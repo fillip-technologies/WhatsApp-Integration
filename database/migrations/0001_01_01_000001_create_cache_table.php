@@ -9,18 +9,26 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+   public function up(): void
     {
-        Schema::create('cache', function (Blueprint $table) {
-            $table->string('key')->primary();
-            $table->mediumText('value');
-            $table->integer('expiration')->index();
-        });
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
 
-        Schema::create('cache_locks', function (Blueprint $table) {
-            $table->string('key')->primary();
-            $table->string('owner');
-            $table->integer('expiration')->index();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('company_name')->nullable();
+            $table->enum('role',['user','admin'])->default('user');
+            $table->string('email')->unique();
+            $table->string('phone', 20)->nullable();
+            $table->string('business_type')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->boolean('is_active')->default(true);
+
+            $table->softDeletes();
+
+            $table->timestamps();
         });
     }
 

@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -13,11 +17,24 @@
         }
     </style>
 </head>
+@if ($errors->any())
+    <script>
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    </script>
+@endif
+
+@if(session('error'))
+<script>
+    toastr.error("{{ session('error') }}");
+</script>
+@endif
 
 <body class="bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 min-h-screen">
     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div
-            class=" w-500 space-y-8 bg-white rounded-2xl shadow-2xl p-8 transform transition-all duration-500 hover:scale-105">
+            class=" w-500 space-y-8 bg-white rounded-2xl shadow-2xl p-8 transform transition-all duration-500 ">
             <div>
                 <div class="flex justify-center">
                     <div
@@ -30,7 +47,7 @@
                     </div>
                 </div>
                 <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                   Create Account
+                    Create Account
                 </h2>
                 <p class="mt-2 text-center text-sm text-gray-600">
                     Sign in to access your dashboard
@@ -73,9 +90,8 @@
                 </div>
             @endif
 
-            <form method="POST" action="" class="space-y-6">
+            <form method="POST" action="{{ route('user.create') }}" class="space-y-6">
                 @csrf
-
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
                     <!-- First Name -->
@@ -85,7 +101,7 @@
                         </label>
                         <input type="text" name="first_name"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
-                            placeholder="John">
+                            placeholder="Fist Name">
                     </div>
 
                     <!-- Last Name -->
@@ -95,7 +111,7 @@
                         </label>
                         <input type="text" name="last_name"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
-                            placeholder="Doe">
+                            placeholder="Last Name">
                     </div>
 
                     <!-- Company Name -->
@@ -125,7 +141,7 @@
                         </label>
                         <input type="email" name="email"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
-                            placeholder="john@example.com">
+                            placeholder="Enter your email">
                     </div>
 
                     <div>
@@ -145,15 +161,10 @@
                     </div>
                 </div>
 
-                <!-- Email -->
-
-
-                <!-- Business Type -->
-
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-                    <!-- Password -->
+
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             Password
@@ -163,7 +174,7 @@
                             placeholder="********">
                     </div>
 
-                    <!-- Confirm Password -->
+
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             Confirm Password

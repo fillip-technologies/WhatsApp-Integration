@@ -9,7 +9,7 @@
                         d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
                     </path>
                 </svg>
-                <span class="text-white font-bold text-xl">UserPanel</span>
+                <span class="text-white font-bold text-xl">{{ UserLogin() ? "UserPanel" : "AdminPanel" }}</span>
             </div>
             <button id="closeMobileSidebar" class="text-white hover:text-purple-200">
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@
                         d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
                     </path>
                 </svg>
-                <span class="text-white font-bold text-xl">UserPanel</span>
+                <span class="text-white font-bold text-xl">{{ UserLogin() ? "UserPanel" : "AdminPanel" }}</span>
             </div>
         </div>
         <nav class="flex-1 px-2 py-4 space-y-1">
@@ -120,7 +120,7 @@
             </a>
         </nav>
         <div class="flex-shrink-0 flex border-t border-purple-700 p-4">
-            <form method="POST" action="{{ UserLogin() ? route('user.logout') : "" }}" class="w-full">
+            <form method="POST" action="{{ UserLogin() ? route('user.logout') : route('admin.logout') }}" class="w-full">
                 @csrf
                 <button type="submit" class="flex items-center text-purple-100 hover:text-white w-full group">
                     <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 20 20">

@@ -6,4 +6,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->controller(AdminController::class)->middleware(['admin'])->group(function(){
 Route::get('/dashboard','adminDashboard')->name('admin.dashboard');
+Route::post('/logout','LogoutAdmin')->name('admin.logout');
 });

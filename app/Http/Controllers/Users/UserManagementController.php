@@ -6,10 +6,15 @@ use App\Events\RestrationEvent;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserManagementController extends Controller
 {
+
+   public function user_dashboard(){
+    return view('admin.dashboard');
+    }
     public function CreateUser(Request $request){
         $request->validate([
         'first_name'=>'required|string|min:3|max:100',
@@ -39,5 +44,42 @@ class UserManagementController extends Controller
         }
 
         }
+
+        public function systemLogin(Request $request)
+     {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+
+    if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
+        $user = Auth::user();
+       
+        if($user->role == 'user'){
+         return redirect()->route('user.dashboard');
+        }
+
+    }
+
+    if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
+        $user = Auth::user();
+        if($user->role == 'admin'){
+         return redirect('admin/dashboard');
+        }
+
+    }
+
+        return back()->withErrors([
+        'email' => 'Invalid email or password.'
+       ])->withInput();
+}
+
+       public function UserLogout()
+      {
+         Auth::guard('user')->logout();
+         request()->session()->invalidate();
+         request()->session()->regenerateToken();
+        return redirect()->route('login');
+     }
 
 }

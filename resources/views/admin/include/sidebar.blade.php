@@ -120,7 +120,7 @@
             </a>
         </nav>
         <div class="flex-shrink-0 flex border-t border-purple-700 p-4">
-            <form method="POST" action="" class="w-full">
+            <form method="POST" action="{{ UserLogin() ? route('user.logout') : "" }}" class="w-full">
                 @csrf
                 <button type="submit" class="flex items-center text-purple-100 hover:text-white w-full group">
                     <svg class="h-5 w-5 mr-3" fill="currentColor" viewBox="0 0 20 20">

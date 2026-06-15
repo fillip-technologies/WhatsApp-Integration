@@ -37,7 +37,7 @@
                 </p>
             </div>
 
-            @if (session('success'))
+            @if (session('error'))
                 <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-md">
                     <div class="flex">
                         <div class="flex-shrink-0">
@@ -48,7 +48,7 @@
                             </svg>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm text-green-700">{{ session('success') }}</p>
+                            <p class="text-sm text-green-700">{{ session('error') }}</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                 </div>
             @endif
 
-            <form class="mt-8 space-y-6" method="POST" action="">
+            <form class="mt-8 space-y-6" method="POST" action="{{ route('system.login') }}">
                 @csrf
 
                 <div class="space-y-5">
@@ -92,11 +92,12 @@
                                 </svg>
                             </div>
 
-                            <input type="email" id="email" name="email" value="{{ old('email') }}" required
+                            <input type="email" id="email" name="email" value="{{ old('email') }}"
                                 autofocus placeholder="Enter your email"
-                                class="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl
+                                class="w-full pl-10 pr-4 py-3 border @error('email') border-red-600 @enderror border-slate-300 rounded-xl
                     focus:outline-none focus:ring-2 focus:ring-blue-700
                     focus:border-blue-700 transition-all duration-300">
+
                         </div>
                     </div>
 
@@ -115,7 +116,7 @@
                                 </svg>
                             </div>
 
-                            <input type="password" id="password" name="password" required placeholder="••••••••"
+                            <input type="password" id="password" name="password"  placeholder="••••••••"
                                 class="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl
                     focus:outline-none focus:ring-2 focus:ring-blue-700
                     focus:border-blue-700 transition-all duration-300">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
+use App\Models\Templates;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -172,6 +173,16 @@ class UserManagementController extends Controller
                 ], 400);
             }
 }
+
+        public function listTemplate(){
+            $user = UserLogin() ??  0;
+            $templates = Templates::with(['user'])->where('user_id',$user->id)->get() ?? [];
+            return view('users.listst',compact('templates'));
+        }
+
+        public function createTemplate(){
+            return view('users.create_template');
+        }
 
 
 }

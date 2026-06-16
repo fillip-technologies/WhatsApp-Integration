@@ -1,0 +1,155 @@
+
+Route::get('/send-whatsapp', function () {
+
+    $token = env('WHATSAPP_TOKEN');
+    $phoneNumberId = env('WHATSAPP_PHONE_NUMBER_ID');
+    $version = env('WHATSAPP_VERSION', 'v25.0');
+
+    $response = Http::withToken($token)
+        ->post("https://graph.facebook.com/{$version}/{$phoneNumberId}/messages", [
+            "messaging_product" => "whatsapp",
+            "to" => "919235279546",
+            "type" => "template",
+            "template" => [
+                "name" => "training_application_received",
+                "language" => [
+                    "code" => "en_US"
+                ],
+                "components" => [
+                    [
+                        "type" => "body",
+                        "parameters" => [
+                            [
+                                "type" => "text",
+                                "text" => "Abhishek Prajapati"
+                            ],
+                            [
+                                "type" => "text",
+                                "text" => "Full Stack Development"
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+    return response()->json([
+        'status' => $response->status(),
+        'response' => $response->json(),
+    ]);
+});
+
+
+Route::get('/test-waba', function () {
+
+    $phoneNumberId = env('WHATSAPP_PHONE_NUMBER_ID');
+
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->get("https://graph.facebook.com/v25.0/{$phoneNumberId}");
+
+    dd(
+        $response->status(),
+        $response->body()
+    );
+});
+
+Route::get('/create-template', function () {
+
+    $wabaId = env('WHATSAPP_BUSINESS_ACCOUNT_ID');
+
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->post(
+            "https://graph.facebook.com/v25.0/{$wabaId}/message_templates",
+           [
+                "name" => "candidate_application_received_v1",
+                "category" => "UTILITY",
+                "language" => "en_US",
+                "components" => [
+                    [
+                        "type" => "HEADER",
+                        "format" => "TEXT",
+                        "text" => "Application Update"
+                    ],
+                    [
+                        "type" => "BODY",
+                        "text" => "Hello {{1}}, thank you for your application. We have successfully received your submission and our team is reviewing the details. We will share further updates once the review process is complete."
+                    ],
+                    [
+                        "type" => "FOOTER",
+                        "text" => "Do not reply to this message"
+                    ]
+                ]
+            ]
+        );
+
+
+});
+
+Route::get('/list-templates', function () {
+
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->get(
+            "https://graph.facebook.com/v25.0/" .
+            env('WHATSAPP_BUSINESS_ACCOUNT_ID') .
+            "/message_templates"
+        );
+
+    dd($response->json());
+});
+
+Route::get('/show-template', function () {
+
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->get(
+            "https://graph.facebook.com/v25.0/" .
+            env('WHATSAPP_BUSINESS_ACCOUNT_ID') .
+            "/message_templates"
+        );
+
+    foreach ($response['data'] as $template) {
+        if ($template['id'] == '1026834573103795') {
+            dd($template['components']);
+        }
+    }
+
+});
+
+Route::get('/send-template', function () {
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->post(
+            "https://graph.facebook.com/v25.0/" .
+            env('WHATSAPP_PHONE_NUMBER_ID') .
+            "/messages",
+            [
+                "messaging_product" => "whatsapp",
+                "to" => "919235279546",
+                "type" => "template",
+                "template" => [
+                    "name" => "hello_world",
+                    "language" => [
+                        "code" => "en_US"
+                    ]
+                ]
+            ]
+        );
+
+    dd(
+        $response->status(),
+        $response->json()
+    );
+});
+
+
+Route::get('/test-phone', function () {
+
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->get(
+            "https://graph.facebook.com/v25.0/" .
+            env('WHATSAPP_PHONE_NUMBER_ID')
+        );
+
+    dd(
+        $response->status(),
+        $response->json()
+    );
+});

@@ -54,4 +54,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function subscription(){
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function whatsappaccount(){
+        return $this->hasOne(WhatsappAccount::class);
+    }
 }

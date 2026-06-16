@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Users;
 
-use App\Events\RestrationEvent;
+use App\Events\SentRegistrationEvent;
 use App\Http\Controllers\Controller;
+use App\Mail\RegistrationEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserManagementController extends Controller
 {
@@ -36,7 +38,8 @@ class UserManagementController extends Controller
             'business_type'=>$request->business_type,
             'password'=>Hash::make($request->password),
         ]);
-        event(new RestrationEvent($data));
+        Mail::to($data->email)->send(new RegistrationEmail($data));
+        // event(new SentRegistrationEvent($data));
         if($data){
             return redirect()->route('login');
         }else{
@@ -54,7 +57,7 @@ class UserManagementController extends Controller
 
     if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
         $user = Auth::user();
-       
+
         if($user->role == 'user'){
          return redirect()->route('user.dashboard');
         }

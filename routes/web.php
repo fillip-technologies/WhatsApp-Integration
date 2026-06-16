@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\UserManagementController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 
 
 Route::get('/login', [HomeController::class, 'index'])->name('login');
@@ -50,7 +51,6 @@ Route::get('/send-whatsapp', function () {
     ]);
 });
 
-
 Route::get('/test-meta', function () {
 
     $response = Http::withToken(env('WHATSAPP_TOKEN'))
@@ -60,4 +60,13 @@ Route::get('/test-meta', function () {
         'status' => $response->status(),
         'body' => $response->json(),
     ];
+});
+
+Route::get('/test-mail', function () {
+    Mail::raw('Test email from Laravel', function ($message) {
+        $message->to('techabhishek201@gmail.com')
+                ->subject('Laravel Test Mail');
+    });
+
+    return 'Mail sent!';
 });

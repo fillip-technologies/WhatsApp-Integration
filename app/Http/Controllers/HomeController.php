@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
+
 class HomeController extends Controller
 {
     public function index()
@@ -18,7 +20,8 @@ class HomeController extends Controller
         return view('frontend.chatapp');
     }
 
-    public function register(){
-        return view('frontend.userRegistretion');
-    }
+   public function homeindex(){
+    $plans = Plan::latest()->limit(3)->get();
+    return view('frontend.home',compact('plans'));
+   }
 }

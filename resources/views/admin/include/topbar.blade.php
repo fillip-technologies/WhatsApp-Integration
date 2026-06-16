@@ -21,13 +21,8 @@
                     <!-- User Menu -->
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center space-x-3 focus:outline-none">
-                            <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center">
-                                <span class="text-white text-sm font-medium">
-                                    {{ UserLogin() ? UserLogin()->first_name : AdminLogin()->first_name }}
-                                </span>
-                            </div>
                             <div class="hidden md:block">
-                                <p class="text-sm font-medium text-gray-700">User</p>
+                                <p class="text-sm font-medium text-gray-700">{{ AdminLogin() ? 'Admin' : "User" }}</p>
 
                             </div>
                             <svg class="hidden md:block h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">

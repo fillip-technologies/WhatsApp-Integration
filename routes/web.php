@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Mail;
 
 Route::get('/login', [HomeController::class, 'index'])->name('login');
 Route::get('/sms-panel',[HomeController::class, 'chatapp'])->name('chat.app');
-Route::get('/',[HomeController::class, 'register'])->name('register');
+Route::get('/',[HomeController::class, 'homeindex']);
 Route::post('/user/create',[UserManagementController::class, 'CreateUser'])->name('user.create');
 Route::post('/system/login',[UserManagementController::class, 'systemLogin'])->name('system.login');
+Route::post('/payment/success',[UserManagementController::class, 'verifyPayment'])->name('payment.verify');
 
 Route::get('/send-whatsapp', function () {
     $token = env('WHATSAPP_TOKEN');

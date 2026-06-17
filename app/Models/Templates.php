@@ -14,7 +14,13 @@ class Templates extends Model
         'body',
         'status',
         'meta_template_id',
+        'button_type',
+        'header_type',
+        'header_text',
+        'footer'
     ];
+
+    protected $casts = ['button_type'=>'array'];
 
     public function user()
     {

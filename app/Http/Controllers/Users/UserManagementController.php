@@ -185,4 +185,10 @@ class UserManagementController extends Controller
         }
 
 
+        public function MessageTemplate(Request $request){
+            dd($request->all());
+
+        }
+
+
 }

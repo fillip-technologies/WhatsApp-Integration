@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('templates', function (Blueprint $table) {
-            $table->string('header_type')->nullable();
-            $table->string('header_text')->nullable();
-            $table->string('footer')->nullable();
-            $table->json('button_type');
+        Schema::table('plans', function (Blueprint $table) {
+            $table->string('button')->nullable();
         });
     }
 
-    
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::table('templates', function (Blueprint $table) {
+        Schema::table('plans', function (Blueprint $table) {
             //
         });
     }

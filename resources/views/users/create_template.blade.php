@@ -1,5 +1,26 @@
 @extends('admin.include.app')
 @section('content')
+
+@if(session('success'))
+        <script>
+            toastr.success("{{ session('success') }}");
+        </script>
+    @endif
+
+    @if(session('error'))
+        <script>
+            toastr.error("{{ session('error') }}");
+        </script>
+    @endif
+
+    @if ($errors->any())
+    <script>
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    </script>
+@endif
+
     <div class="p-4 md:p-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
 
         <!-- Header -->
@@ -21,8 +42,7 @@
         <div class="max-w-4xl mx-auto">
             <form method="POST" action="{{ route('template.create') }}" class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                 @csrf
-
-                <!-- Form Progress Steps -->
+               <input type="hidden" value="{{ UserLogin() ? UserLogin()->id : 0 }}" name="user_id">
                 <div class="px-6 py-4 bg-gradient-to-r from-[#25D366]/10 to-[#128C7E]/10 border-b border-gray-100">
                     <div class="flex items-center justify-between max-w-md mx-auto">
                         <div class="flex items-center gap-2">
@@ -86,7 +106,7 @@
                                     class="w-full pl-10 pr-10 py-3 border-2 border-gray-200 rounded-xl focus:border-[#25D366] focus:ring-4 focus:ring-[#25D366]/20 transition appearance-none @error('category') border-red-500 @enderror"
                                     >
                                     <option value="">Select Category</option>
-                                     <option value="marketing" {{ old('category') == 'utility' ? 'selected' : '' }}>Utility</option>
+                                     <option value="utility" {{ old('category') == 'utility' ? 'selected' : '' }}>Utility</option>
                                     <option value="marketing" {{ old('category') == 'marketing' ? 'selected' : '' }}>Marketing</option>
                                     <option value="transactional" {{ old('category') == 'transactional' ? 'selected' : '' }}>Transactional</option>
                                     <option value="otp" {{ old('category') == 'otp' ? 'selected' : '' }}>OTP / Verification</option>

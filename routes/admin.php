@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->controller(AdminController::class)->middleware(['admin'])->group(function(){
 Route::get('/dashboard','adminDashboard')->name('admin.dashboard');
 Route::post('/logout','LogoutAdmin')->name('admin.logout');
+Route::get('/config/index','ConfigIndex')->name('config.index');
+Route::post('store/config','storeConfig')->name('admin.storeConfig');
+Route::get('config/list','configList')->name('config.list');
+Route::post('save/whatsapp/config','saveWhatsappConfig')->name('save.env');
 
 //Plans Created By Abhishek
 

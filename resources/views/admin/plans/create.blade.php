@@ -19,7 +19,7 @@
             <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
 
                 {{-- Header --}}
-                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6">
+                <div class="bg-gradient-to-r from-green-600 to-green-700 px-8 py-6">
                     <div class="flex items-center gap-3">
                         <div class="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
                             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,13 +192,19 @@
                         </div>
                     </div>
 
+                    <div class="mt-5">
+                        <label for="" class="block text-sm font-semibold text-gray-700">Button</label>
+                          <input type="text" name="button" placeholder="e.g. 30"
+                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3.5 pl-11 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-blue-300">
+                    </div>
+
                     {{-- Divider --}}
                     <hr class="my-8 border-gray-200">
 
                     {{-- Submit --}}
                     <div class="flex items-center gap-4">
                         <button type="submit"
-                            class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-10 py-3.5 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02]">
+                            class="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-blue-700 hover:to-green-600 text-white px-10 py-3.5 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02]">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                             </svg>

@@ -78,8 +78,7 @@
                         </ul>
                         <div class="mt-8">
                             <button id="signup" onclick="getdata('{{ $items->plans }}')"
-                                class="block w-full text-center border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white font-semibold py-3 rounded-full transition">Get
-                                Starter</button>
+                                class="block w-full text-center border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white font-semibold py-3 rounded-full transition">{{ $items->button ?? "Get Subscription" }}</button>
                         </div>
                     </div>
                 @empty

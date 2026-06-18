@@ -1,4 +1,4 @@
-  <header class="bg-white shadow-sm">
+  <header class="bg-gradient-to-r from-green-600 to-green-700 shadow-sm">
             <div class="px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
                 <div class="flex items-center">
                     <!-- Mobile menu button -->
@@ -7,7 +7,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
-                    <h1 class="ml-2 text-2xl font-semibold text-gray-900">Dashboard</h1>
+                    <h1 class="ml-2 text-2xl font-semibold text-gray-900 text-white">Dashboard</h1>
                 </div>
                 <div class="flex items-center space-x-4">
 
@@ -22,7 +22,7 @@
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center space-x-3 focus:outline-none">
                             <div class="hidden md:block">
-                                <p class="text-sm font-medium text-gray-700">{{ AdminLogin() ? 'Admin' : "User" }}</p>
+                                <p class="text-sm font-medium text-white">{{ AdminLogin() ? 'Admin' : "User" }}</p>
 
                             </div>
                             <svg class="hidden md:block h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">

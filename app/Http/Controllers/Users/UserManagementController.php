@@ -180,15 +180,7 @@ class UserManagementController extends Controller
             return view('users.listst',compact('templates'));
         }
 
-        public function createTemplate(){
-            return view('users.create_template');
-        }
-
-
-        public function MessageTemplate(Request $request){
-            dd($request->all());
-
-        }
+       
 
 
 }

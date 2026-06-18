@@ -19,7 +19,7 @@
             <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
 
                 {{-- Header --}}
-                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6">
+                <div class="bg-gradient-to-r from-green-600 to-green-700 px-8 py-6">
                     <div class="flex items-center gap-3">
                         <div class="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
                             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,7 +102,7 @@
                             @endforeach
                         </div>
                     </div> {{-- Submit --}} <div class="mt-8"> <button type="submit"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl"> Update Plan </button>
+                            class="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-xl"> Update Plan </button>
                     </div>
                 </form>
 

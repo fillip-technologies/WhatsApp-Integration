@@ -26,6 +26,7 @@ class PlanManageController extends Controller
         'message_limit' => 'required|integer|min:0',
         'validity_day'  => 'required|integer|min:1',
         'feature'       => 'required|array|min:1',
+        'button'=>'required|string',
         'feature.*'     => 'required|string|max:255',
     ]);
 
@@ -34,6 +35,7 @@ class PlanManageController extends Controller
         'price'         => $validated['price'],
         'description'   => $validated['description'],
         'plans'         => $validated['plans'],
+        'button'=>$validated['button'],
         'message_limit' => $validated['message_limit'],
         'validity_day'  => $validated['validity_day'],
         'feature'       => $validated['feature'],
@@ -57,6 +59,7 @@ class PlanManageController extends Controller
         'price'         => 'required|numeric|min:0',
         'description'   => 'required|string',
         'plans'         => 'required|string',
+         'button'=>'required|string',
         'message_limit' => 'required|integer|min:0',
         'validity_day'  => 'required|integer|min:1',
         'feature'       => 'required|array|min:1',
@@ -70,6 +73,7 @@ class PlanManageController extends Controller
         'price'         => $validated['price'],
         'description'   => $validated['description'],
         'plans'         => $validated['plans'],
+        'button'=>$validated['button'],
         'message_limit' => $validated['message_limit'],
         'validity_day'  => $validated['validity_day'],
         'feature'       => $validated['feature'],

@@ -40,8 +40,8 @@
 
                 {{-- Form --}}
                 <form action="{{ route('update.plan', $plan->id) }}" method="POST"
-                    class="bg-white rounded-2xl shadow-lg p-8"> @csrf <div
-                        class="grid grid-cols-1 md:grid-cols-2 gap-6"> {{-- Plan Name --}} <div class="md:col-span-2">
+                    class="bg-white rounded-2xl shadow-lg p-8"> @csrf <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {{-- Plan Name --}} <div class="md:col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-2"> Plan Name </label> <input
                                 type="text" name="name" value="{{ old('name', $plan->name) }}"
                                 class="w-full rounded-xl border @error('name') border-red-500 @else border-gray-300 @enderror px-4 py-3 focus:ring-2 focus:ring-blue-500">
@@ -91,7 +91,9 @@
                     </div> {{-- Features --}} <div class="mt-6">
                         <div class="flex justify-between items-center mb-3"> <label
                                 class="text-sm font-medium text-gray-700"> Features </label> <button type="button"
-                                id="addFeature" class="bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 text-white px-4 py-2 rounded-lg"> Add
+                                id="addFeature"
+                                class="bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 text-white px-4 py-2 rounded-lg">
+                                Add
                                 Feature </button> </div>
                         <div id="featureContainer">
                             @foreach (old('feature', $plan->feature ?? []) as $feature)
@@ -101,8 +103,15 @@
                                         class="removeFeature bg-red-500 text-white px-3 rounded-lg"> X </button> </div>
                             @endforeach
                         </div>
+
+                        <div class="mt-5">
+                            <label for="" class="block text-sm font-semibold text-gray-700">Button</label>
+                            <input type="text" name="button" placeholder="e.g. 30" value="{{ old('button',$plan->button ?? "") }}"
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3.5 pl-11 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-blue-300">
+                        </div>
                     </div> {{-- Submit --}} <div class="mt-8"> <button type="submit"
-                            class="bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 text-white px-8 py-3 rounded-xl"> Update Plan </button>
+                            class="bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 text-white px-8 py-3 rounded-xl">
+                            Update Plan </button>
                     </div>
                 </form>
 

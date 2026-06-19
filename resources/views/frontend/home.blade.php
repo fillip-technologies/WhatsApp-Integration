@@ -48,12 +48,16 @@
                 @forelse ($plans as $items)
                     @php
                         $icon = '';
-                        if ($items->plans === 'Premium') {
+                        $color = '';
+                        if ($items->plans == 'Premium') {
                             $icon = '<i class="fas fa-crown text-2xl text-yellow-500"></i>';
-                        } elseif ($items->plans === 'Basic') {
+                            $color = 'border-[#25D366] text-[#25D366] hover:bg-[#25D366]';
+                        } elseif ($items->plans == 'Basic') {
                             $icon = '<i class="fas fa-seedling text-2xl text-emerald-500"></i>';
-                        } elseif ($items->plans === 'Enterprise') {
+                            $color = 'border-orange  hover:bg-orange-800';
+                        } elseif ($items->plans == 'Enterprise') {
                             $icon = '<i class="fas fa-building text-2xl text-blue-500"></i>';
+                            $color = 'border-blue-500 text-blue-500 hover:bg-blue-600';
                         }
                     @endphp
 
@@ -78,7 +82,7 @@
                         </ul>
                         <div class="mt-8">
                             <button id="signup" onclick="getdata('{{ $items->plans }}')"
-                                class="block w-full text-center border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white font-semibold py-3 rounded-full transition">{{ $items->button ?? 'Get Subscription' }}</button>
+                                class="block w-full text-center border {{ $color }} hover:text-white font-semibold py-3 rounded-full transition">{{ $items->button ?? 'Get Subscription' }}</button>
                         </div>
                     </div>
                 @empty

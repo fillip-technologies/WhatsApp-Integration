@@ -1,4 +1,4 @@
-  <header class="bg-gradient-to-r from-green-600 to-green-700 shadow-sm">
+  <header class="bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 shadow-sm">
             <div class="px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
                 <div class="flex items-center">
                     <!-- Mobile menu button -->

@@ -4,7 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\UserManagementController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
+
 
 
 Route::get('/login', [HomeController::class, 'index'])->name('login');

@@ -31,6 +31,7 @@ class User extends Authenticatable
     'business_type',
     'password',
     'is_active',
+    'deleted_at'
   ];
 
     /**
@@ -62,5 +63,9 @@ class User extends Authenticatable
 
     public function whatsappaccount(){
         return $this->hasOne(WhatsappAccount::class);
+    }
+
+    public function payment(){
+        return $this->hasMany(Payment::class);
     }
 }

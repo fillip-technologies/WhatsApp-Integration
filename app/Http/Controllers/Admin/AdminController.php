@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\InvoiceEvent;
 use App\Http\Controllers\Controller;
 use App\Models\ConfigData;
+use App\Models\Payment;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Browsershot\Browsershot;
 
 class AdminController extends Controller
 {
@@ -93,5 +98,34 @@ private function updateEnv($key, $value)
         $content .= "\n{$key}=\"" . $value . "\"";
     }
     file_put_contents($path, $content);
+}
+
+public function userList(){
+    $users = User::paginate(10);
+    return view('admin.users.index',compact('users'));
+}
+
+public function viewUserDetails($id){
+   $viewdata = Payment::with(['user','plan'])->where('user_id',$id)->first();;
+   return view('admin.users.viewUser',compact('viewdata'));
+}
+
+
+public function invoicedata($id)
+{
+    $viewdata = Payment::with(['user','plan'])->where('user_id',$id)->first();;
+    $pdf = Pdf::loadView('pdf.invoice', compact('viewdata'));
+    return $pdf->download('report.pdf');
+}
+
+   public function deleteUser($id){
+     $user = User::findOrFail($id);
+
+    if($user){
+        $user->delete();
+        return back()->with('success','User Deleted SuccessFul');
+    }else{
+        return back()->with('error','User Deletion Failed');
+    }
 }
 }

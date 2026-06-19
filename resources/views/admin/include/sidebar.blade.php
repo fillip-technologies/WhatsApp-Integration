@@ -125,7 +125,7 @@
 {{-- Desktop Sidebar --}}
 <div class="hidden md:flex md:flex-shrink-0">
     <div
-        class="flex flex-col w-64 h-screen sticky top-0 bg-gradient-to-r from-green-600 to-green-700 shadow-2xl">
+        class="flex flex-col w-64 h-screen sticky top-0 bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 shadow-2xl">
         {{-- Header --}}
         <div class="flex items-center justify-center px-6 py-6 bg-white/5 backdrop-blur-sm border-b border-white/10">
             <div class="flex items-center space-x-3">
@@ -152,7 +152,7 @@
 
             <a href="{{ AdminLogin() ? route('admin.dashboard') : route('user.dashboard') }}"
                 class="group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200
-                       bg-gradient-to-r from-green-600 to-green-700 text-white shadow-lg shadow-purple-500/30">
+                       bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 text-white shadow-lg shadow-purple-500/30">
                 <div class="p-1.5 bg-white/20 rounded-lg mr-3">
                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                         <path
@@ -174,7 +174,7 @@
                     {{-- <span class="ml-auto bg-green-500/20 text-green-300 text-xs px-2 py-0.5 rounded-full">Active</span> --}}
                 </a>
 
-                <a href="#"
+                <a href="{{ route('user.list') }}"
                     class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                     <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
                          <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
@@ -186,16 +186,7 @@
                     Users
                 </a>
 
-                <a href="#"
-                    class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
-                    <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
-                        <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M3 3h14v14H3V3zm3 10h2V7H6v6zm3 0h2V5H9v8zm3 0h2V9h-2v4z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    Reports
-                </a>
+
 
 
                 <div class="pt-4 mt-4 border-t border-white/10">
@@ -309,10 +300,6 @@
                     </form>
                 </div>
             @endif
-
-
-
-
         </nav>
     </div>
 </div>

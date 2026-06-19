@@ -4,7 +4,7 @@
     <div class="max-w-7xl mx-auto">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             <!-- Header -->
-            <div class="px-6 py-4 bg-gradient-to-r from-green-600 to-green-700 border-b border-gray-200">
+            <div class="px-6 py-4 bg-gradient-to-r from-[#25D366] to-[#128C7E] border-b border-gray-200">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center">
                         <svg class="w-8 h-8 text-white mr-3" fill="currentColor" viewBox="0 0 24 24">

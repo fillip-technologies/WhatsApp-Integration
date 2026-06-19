@@ -19,7 +19,7 @@
             <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
 
                 {{-- Header --}}
-                <div class="bg-gradient-to-r from-green-600 to-green-700 px-8 py-6">
+                <div class="bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 px-8 py-6">
                     <div class="flex items-center gap-3">
                         <div class="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
                             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,7 +165,7 @@
                                 <p class="text-xs text-gray-400 mt-0.5">List the key features of this plan</p>
                             </div>
                             <button type="button" id="addFeature"
-                                class="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-5 py-2.5 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-[1.02]">
+                                class="inline-flex items-center gap-2 bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 hover:from-[#25D366]-600 hover:to-emerald-600 text-white px-5 py-2.5 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-[1.02]">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
                                 </svg>
@@ -204,7 +204,7 @@
                     {{-- Submit --}}
                     <div class="flex items-center gap-4">
                         <button type="submit"
-                            class="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-blue-700 hover:to-green-600 text-white px-10 py-3.5 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02]">
+                            class="inline-flex items-center gap-2 bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 hover:from-blue-700 hover:to-green-600 text-white px-10 py-3.5 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02]">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                             </svg>

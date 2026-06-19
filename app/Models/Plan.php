@@ -14,5 +14,9 @@ class Plan extends Model
         return $this->hasMany(Subscription::class);
      }
 
+     public function payment(){
+        return $this->hasMany(Payment::class);
+     }
+
      protected $casts = ['feature'=>'array'];
     }

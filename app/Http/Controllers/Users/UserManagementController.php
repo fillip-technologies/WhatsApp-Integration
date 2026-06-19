@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegistrationEmail;
+use App\Models\Payment;
 use App\Models\Plan;
 use App\Models\Templates;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Razorpay\Api\Api;
 
 class UserManagementController extends Controller
@@ -44,7 +46,7 @@ class UserManagementController extends Controller
         'password'      => Hash::make($request->password),
     ]);
 
-    $plan = Plan::where('plans', $request->plan_type)->first();
+     $plan = Plan::where('plans', $request->plan_type)->first();
 
     if (!$plan) {
         return response()->json([
@@ -63,8 +65,8 @@ class UserManagementController extends Controller
         'amount'   => $plan->price * 100,
         'currency' => 'INR'
     ]);
-
-    return response()->json([
+     Mail::to($user->email)->send(new RegistrationEmail($user));
+     return response()->json([
         'success' => true,
         'user_id' => $user->id,
         'plan_id' => $plan->id,
@@ -84,15 +86,23 @@ class UserManagementController extends Controller
             ]);
     if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
         $user = Auth::user();
-
         if($user->role == 'user'){
+         $check = Payment::with(['user'])->where('user_id',$user->id)->first();
+         if($check->status == "success"){
          return redirect()->route('user.dashboard');
+         }else{
+              return back()->with('error','First you will be payment your plan then you can login here');
+         }
         }
 
+    }else{
+            return back()->with('error','Invalid email or password.');
     }
+
     if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
         $user = Auth::user();
         if($user->role == 'admin'){
+
          return redirect('admin/dashboard');
         }
 
@@ -127,7 +137,8 @@ class UserManagementController extends Controller
               DB::transaction(function () use ($request) {
                     DB::table('payments')->insert([
                             'user_id'    => $request->user_id,
-                            'amount'=>$request->amount,
+                            'razorpay_order_id'=>$request->razorpay_order_id,
+                            'amount'=>$request->amount / 100,
                             'currency'=>$request->currency,
                             'plan_id'    => $request->plan_id,
                             'razorpay_payment_id' => $request->razorpay_payment_id,
@@ -180,7 +191,7 @@ class UserManagementController extends Controller
             return view('users.listst',compact('templates'));
         }
 
-       
+
 
 
 }

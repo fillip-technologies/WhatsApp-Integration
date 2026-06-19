@@ -78,7 +78,7 @@
                         </ul>
                         <div class="mt-8">
                             <button id="signup" onclick="getdata('{{ $items->plans }}')"
-                                class="block w-full text-center border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white font-semibold py-3 rounded-full transition">{{ $items->button ?? "Get Subscription" }}</button>
+                                class="block w-full text-center border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white font-semibold py-3 rounded-full transition">{{ $items->button ?? 'Get Subscription' }}</button>
                         </div>
                     </div>
                 @empty
@@ -297,7 +297,13 @@
                             </button>
 
                         </div>
-
+                        <div id="loading" class="hidden">
+                            <div class="fixed inset-0 bg-black/50 flex items-center justify-center">
+                                <div
+                                    class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin">
+                                </div>
+                            </div>
+                        </div>
                         <!-- Footer -->
                         <div class="text-center">
 
@@ -402,7 +408,8 @@
         });
 
         document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+             e.preventDefault();
+              document.getElementById('loading').classList.remove('hidden');
             let formData = new FormData(this);
             fetch("{{ route('user.create') }}", {
                     method: "POST",
@@ -413,6 +420,7 @@
                 })
                 .then(res => res.json())
                 .then(data => {
+                    document.getElementById('loading').classList.add('hidden');
                     if (!data.success) {
                         alert(data.message);
                         return;
@@ -435,8 +443,8 @@
                                     },
                                     body: JSON.stringify({
                                         user_id: data.user_id,
-                                        amount:data.amount,
-                                        currency:data.currency,
+                                        amount: data.amount,
+                                        currency: data.currency,
                                         plan_id: data.plan_id,
                                         razorpay_payment_id: response.razorpay_payment_id,
                                         razorpay_order_id: response.razorpay_order_id,

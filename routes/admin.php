@@ -12,6 +12,10 @@ Route::get('/config/index','ConfigIndex')->name('config.index');
 Route::post('store/config','storeConfig')->name('admin.storeConfig');
 Route::get('config/list','configList')->name('config.list');
 Route::post('save/whatsapp/config','saveWhatsappConfig')->name('save.env');
+Route::get('/users/list','userList')->name('user.list');
+Route::get('/usre/view/{id}/data','viewUserDetails')->name('user.view');
+Route::get('/delete/uers/{id}','deleteUser')->name('user.delete');
+Route::get('/invoice/generate/{id}','invoicedata')->name('invoicedata');
 
 //Plans Created By Abhishek
 

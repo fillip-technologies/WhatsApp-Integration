@@ -3,21 +3,23 @@
 // create template
 Route::get('create-template', function () {
     $wabaId = env('WHATSAPP_BUSINESS_ACCOUNT_ID');
-
     $response = Http::withToken(env('WHATSAPP_TOKEN'))
         ->post(
             "https://graph.facebook.com/v25.0/" . $wabaId . "/message_templates",
             [
-                'name' => 'welcome_message_v6',
-                'category' => 'UTILITY',
+                'name' => 'course_enrollment_v1',
+                'category' => 'MARKETING',
                 'language' => 'en_US',
                 'components' => [
                     [
                         'type' => 'BODY',
-                        'text' => 'Hello {{1}}, welcome to Fillip Technologies!',
+                        'text' => 'Hello {{1}}, congratulations! Your enrollment in the {{2}} training program has been confirmed successfully. Thank you for choosing us. We wish you a successful learning journey.',
                         'example' => [
                             'body_text' => [
-                                ['Rahul']
+                                [
+                                    'Rahul Kumar',
+                                    'Laravel Development'
+                                ]
                             ]
                         ]
                     ]
@@ -48,27 +50,31 @@ Route::get('send-template', function () {
             env('WHATSAPP_PHONE_NUMBER_ID') .
             "/messages",
             [
-                'messaging_product' => 'whatsapp',
-                'to' => '918210369640',
-                'type' => 'template',
-                'template' => [
-                    'name' => 'welcome_message_v6',
-                    'language' => [
-                        'code' => 'en_US'
+         "messaging_product" => "whatsapp",
+    "to" => "919876543210",
+    "type" => "template",
+    "template" => [
+        "name" => "course_enrollment_v1",
+        "language" => [
+            "code" => "en_US"
+        ],
+        "components" => [
+            [
+                "type" => "body",
+                "parameters" => [
+                    [
+                        "type" => "text",
+                        "text" => $student->name
                     ],
-                    'components' => [
-                        [
-                            'type' => 'BODY',
-                            'parameters' => [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'Abhishek'
-                                ]
-                            ]
-                        ]
+                    [
+                        "type" => "text",
+                        "text" => $course->name
                     ]
                 ]
             ]
+        ]
+    ]
+];
         );
 
     dd($response->status(), $response->json());

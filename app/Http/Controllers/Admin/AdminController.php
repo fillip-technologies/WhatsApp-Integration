@@ -101,7 +101,7 @@ private function updateEnv($key, $value)
 }
 
 public function userList(){
-    $users = User::paginate(10);
+    $users = User::with(['subscription'])->paginate(10);
     return view('admin.users.index',compact('users'));
 }
 
@@ -126,6 +126,15 @@ public function invoicedata($id)
         return back()->with('success','User Deleted SuccessFul');
     }else{
         return back()->with('error','User Deletion Failed');
+    }
+}
+
+public function SearchUser(Request $request){
+    $getdata = trim($request->data);
+    if(!empty($getdata)){
+        $users = User::where('first_name','LIKE','%'. $getdata. '%')->orWhere('email','LIKE','%'. $getdata .'%')->orWhere('company_name','LIKE','%'. $getdata .'%')->paginate(10);
+        return response()->json($users);
+        return view('admin.users.index',compact('users'));
     }
 }
 }

@@ -1,7 +1,7 @@
  @extends('admin.include.app')
  @section('content')
      <main class="px-4 sm:px-6 lg:px-8 py-8">
-         <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl shadow-lg p-6 mb-8 text-white">
+         <div class="bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 rounded-2xl shadow-lg p-6 mb-8 text-white">
              <div class="flex items-center justify-between">
                  <div>
                      <h2 class="text-2xl font-bold mb-2">Welcome back, !</h2>

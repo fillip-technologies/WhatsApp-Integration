@@ -14,9 +14,9 @@ Route::get('config/list','configList')->name('config.list');
 Route::post('save/whatsapp/config','saveWhatsappConfig')->name('save.env');
 Route::get('/users/list','userList')->name('user.list');
 Route::get('/usre/view/{id}/data','viewUserDetails')->name('user.view');
-Route::get('/delete/uers/{id}','deleteUser')->name('user.delete');
+Route::delete('/delete/uers/{id}','deleteUser')->name('user.delete');
 Route::get('/invoice/generate/{id}','invoicedata')->name('invoicedata');
-
+Route::post('/serach/user','SearchUser')->name('search.users');
 //Plans Created By Abhishek
 
 Route::controller(PlanManageController::class)->group(function(){

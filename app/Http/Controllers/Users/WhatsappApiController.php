@@ -129,7 +129,6 @@ class WhatsappApiController extends Controller
 public function showTemplate($id)
 {
     $template = Templates::findOrFail($id);
-
     return response()->json([
         'success' => true,
         'data' => $template
@@ -139,7 +138,6 @@ public function showTemplate($id)
 public function deleteTemplate($id)
 {
     $template = Templates::findOrFail($id);
-
     $response = Http::withToken(env('WHATSAPP_TOKEN'))
         ->delete(
             'https://graph.facebook.com/v25.0/' .

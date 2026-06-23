@@ -13,15 +13,16 @@ Route::get('/',[HomeController::class, 'homeindex']);
 Route::post('/user/create',[UserManagementController::class, 'CreateUser'])->name('user.create');
 Route::post('/system/login',[UserManagementController::class, 'systemLogin'])->name('system.login');
 Route::post('/payment/success',[UserManagementController::class, 'verifyPayment'])->name('payment.verify');
+Route::get('/plans/view',[HomeController::class, 'plansView'])->name('plansView');
 
 
-// Route::get('check-templates', function () {
-//     $wabaId = env('WHATSAPP_BUSINESS_ACCOUNT_ID');
-//     $response = Http::withToken(env('WHATSAPP_TOKEN'))
-//         ->get("https://graph.facebook.com/v25.0/" . $wabaId . "/message_templates");
+Route::get('check-templates', function () {
+    $wabaId = env('WHATSAPP_BUSINESS_ACCOUNT_ID');
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->get("https://graph.facebook.com/v25.0/" . $wabaId . "/message_templates");
 
-//     dd($response->json());
-// });
+    dd($response->json());
+});
 
 
    Route::get('create-template', function () {
@@ -30,7 +31,7 @@ Route::post('/payment/success',[UserManagementController::class, 'verifyPayment'
         ->post(
             "https://graph.facebook.com/v25.0/" . $wabaId . "/message_templates",
             [
-                'name' => 'course_enrollment_v1',
+                'name' => 'course_enrollment_v2',
                 'category' => 'MARKETING',
                 'language' => 'en_US',
                 'components' => [
@@ -55,7 +56,7 @@ Route::post('/payment/success',[UserManagementController::class, 'verifyPayment'
 
 Route::get('/single/tempalte',function(){
 $response = Http::withToken(env('WHATSAPP_TOKEN'))
-    ->get("https://graph.facebook.com/v25.0/1533903705012628");
+    ->get("https://graph.facebook.com/v25.0/27272381595762988");
 dd($response->json());
 });
 
@@ -71,7 +72,7 @@ Route::get('send-template', function () {
             "/messages",
             [
                 "messaging_product" => "whatsapp",
-                "to" => "919235279546", // Student Number
+                "to" => "916280381723", // Student Number
                 "type" => "template",
                 "template" => [
                     "name" => "course_enrollment_v1",
@@ -92,6 +93,30 @@ Route::get('send-template', function () {
                                 ]
                             ]
                         ]
+                    ]
+                ]
+            ]
+        );
+
+    dd($response->status(), $response->json());
+});
+
+
+Route::get('send-hello', function () {
+
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->post(
+            "https://graph.facebook.com/v25.0/" .
+            env('WHATSAPP_PHONE_NUMBER_ID') .
+            "/messages",
+            [
+                'messaging_product' => 'whatsapp',
+                'to' => '919235279546',
+                'type' => 'template',
+                'template' => [
+                    'name' => 'hello_world',
+                    'language' => [
+                        'code' => 'en_US'
                     ]
                 ]
             ]

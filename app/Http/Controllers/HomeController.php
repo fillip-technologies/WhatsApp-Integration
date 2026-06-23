@@ -24,4 +24,11 @@ class HomeController extends Controller
     $plans = Plan::latest()->limit(3)->get();
     return view('frontend.home',compact('plans'));
    }
+
+    public function plansView(){
+    $plans = Plan::all();
+    return view('frontend.plan',compact('plans'));
+   }
+
+
 }

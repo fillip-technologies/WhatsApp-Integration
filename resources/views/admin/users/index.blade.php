@@ -7,14 +7,14 @@
             <h1 class="text-3xl font-bold text-gray-900">User Management</h1>
             <p class="mt-1 text-sm text-gray-600">Manage all registered users and their details</p>
         </div>
-        <div class="mt-4 sm:mt-0">
+        {{-- <div class="mt-4 sm:mt-0">
             <a href="" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-indigo-700 border border-transparent rounded-lg shadow-sm hover:from-indigo-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-150 transform hover:scale-105">
                 <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
                 Add New User
             </a>
-        </div>
+        </div> --}}
     </div>
 
     <!-- Stats Cards -->
@@ -85,7 +85,7 @@
     <div class="mt-6 bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
         <!-- Search and Filter Section -->
         <div class="p-4 bg-gray-50 border-b border-gray-200 sm:p-6">
-            <form action="" method="GET" class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+            <form action="{{ route('search.users') }}" method="GET" class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <div class="flex-1">
                     <div class="relative rounded-md shadow-sm">
                         <div class="absolute inset-y-0 left-0 pl-3 pointer-events-none flex items-center">
@@ -106,7 +106,7 @@
                         Search
                     </button>
                     @if(request('search') || request('role') || request('plan'))
-                        <a href="{{ route('admin.users.index') }}" class="inline-flex items-center px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150">
+                        <a href="{{ url('admin/users/list') }}" class="inline-flex items-center px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
@@ -128,7 +128,7 @@
                         <th scope="col" class="px-6 py-3.5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Company</th>
                         <th scope="col" class="px-6 py-3.5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Contact</th>
                         <th scope="col" class="px-6 py-3.5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Role</th>
-                     
+
                         <th scope="col" class="px-6 py-3.5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
                         <th scope="col" class="px-6 py-3.5 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
@@ -239,7 +239,6 @@
             </table>
         </div>
 
-        <!-- Pagination -->
         <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 sm:flex sm:items-center sm:justify-between">
             <div class="text-sm text-gray-700">
                 Showing <span class="font-medium">{{ $users->firstItem() ?? 0 }}</span> to

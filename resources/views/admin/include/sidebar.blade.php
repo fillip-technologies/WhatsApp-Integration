@@ -2,7 +2,7 @@
 <div id="sidebarOverlay"
     class="fixed inset-0 bg-black/60 backdrop-blur-sm z-20 hidden overlay transition-opacity duration-300"></div>
 
-{{-- Mobile Sidebar --}}
+
 <div id="mobileSidebar"
     class="fixed inset-y-0 left-0 transform -translate-x-full transition-transform duration-300 ease-in-out z-30 w-72 sidebar-transition md:hidden">
     <div class="flex flex-col h-full bg-gradient-to-r from-green-600 to-green-700 shadow-2xl">
@@ -166,9 +166,9 @@
                 <a href="{{ route('plan.list') }}"
                     class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                     <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
-                       <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6l-4 3V5z" />
-          </svg>
+                        <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6l-4 3V5z" />
+                        </svg>
                     </div>
                     Subscription Plans
                     {{-- <span class="ml-auto bg-green-500/20 text-green-300 text-xs px-2 py-0.5 rounded-full">Active</span> --}}
@@ -177,13 +177,26 @@
                 <a href="{{ route('user.list') }}"
                     class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                     <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
-                         <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd"
-                d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 14a7 7 0 1114 0H3z"
-                clip-rule="evenodd" />
-        </svg>
+                        <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 14a7 7 0 1114 0H3z"
+                                clip-rule="evenodd" />
+                        </svg>
                     </div>
                     Users
+                </a>
+
+                <a href="{{ route('index.template') }}"
+                    class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+
+                    <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
+                        <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M4 3a2 2 0 012-2h5.586a2 2 0 011.414.586l2.414 2.414A2 2 0 0116 5.414V17a2 2 0 01-2 2H6a2 2 0 01-2-2V3zm4 5a1 1 0 000 2h4a1 1 0 100-2H8zm0 4a1 1 0 100 2h4a1 1 0 100-2H8z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+
+                    All Templates
                 </a>
 
 
@@ -238,8 +251,7 @@
                     </form>
                 </div>
             @else
-
-             <a href="{{ route('listTemplate') }}"
+                <a href="{{ route('listTemplate') }}"
                     class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                     <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
                         <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">

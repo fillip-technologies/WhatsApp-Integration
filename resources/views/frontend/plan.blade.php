@@ -1,37 +1,5 @@
 @extends('frontend.layout.master')
 @section('content')
-    <section class="hero-gradient text-white py-20 px-6 md:py-28">
-        <div class="max-w-5xl mx-auto text-center">
-            <div
-                class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-5 py-1.5 text-sm font-medium tracking-wide text-emerald-200 border border-white/10 mb-6">
-                <i class="fas fa-bolt mr-2"></i> Multi‑plan WhatsApp API
-            </div>
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-                Connect, Automate &amp; <br class="hidden sm:block" />
-                <span class="text-[#25D366]">Scale</span> with Ease
-            </h1>
-            <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mt-5 leading-relaxed">
-                One API, flexible subscriptions. From startups to enterprises — pick the plan that fits your volume.
-            </p>
-            <div class="mt-10 flex flex-wrap justify-center gap-4">
-                <a href="{{ route('plansView') }}"
-                    class="btn-wa text-white font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-emerald-800/30 flex items-center gap-2 text-lg">
-                    <i class="fas fa-rocket"></i> View Plans
-                </a>
-                <a href="#signup"
-                    class="bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/30 text-white font-medium px-8 py-3.5 rounded-full flex items-center gap-2 text-lg transition">
-                    <i class="fab fa-whatsapp"></i> Start Free Trial
-                </a>
-            </div>
-
-            <div class="mt-12 flex flex-wrap justify-center gap-6 text-sm text-slate-300">
-                <span><i class="fas fa-check-circle text-[#25D366] mr-1.5"></i> 99.9% uptime</span>
-                <span><i class="fas fa-check-circle text-[#25D366] mr-1.5"></i> 24/7 support</span>
-                <span><i class="fas fa-check-circle text-[#25D366] mr-1.5"></i> 2M+ messages/mo</span>
-            </div>
-        </div>
-    </section>
-
     <section id="pricing" class="py-20 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -98,7 +66,6 @@
             </p>
         </div>
     </section>
-
     <div id="signupModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm overflow-y-auto">
 
         <div class="min-h-screen flex justify-center items-center p-4">
@@ -329,179 +296,146 @@
         </div>
 
     </div>
+    <style>
+        .hover-shadow-lg:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
 
+        .transition {
+            transition: all 0.3s ease;
+        }
 
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-    <section id="features" class="py-20 px-6 bg-slate-100">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-14">
-                <h3 class="text-2xl md:text-4xl font-bold text-slate-800">Built for <span
-                        class="text-[#25D366]">every</span> scale</h3>
-                <p class="text-slate-500 max-w-2xl mx-auto mt-2">Switch plans anytime. Pay only for what you need.</p>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-start">
-                    <i class="fas fa-infinity text-3xl text-[#25D366] mb-3"></i>
-                    <h4 class="font-bold text-lg">Flexible volumes</h4>
-                    <p class="text-slate-500 text-sm">From 5k to 100k+ messages, adjust as you grow.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-start">
-                    <i class="fas fa-phone-alt text-3xl text-[#25D366] mb-3"></i>
-                    <h4 class="font-bold text-lg">Multi‑number</h4>
-                    <p class="text-slate-500 text-sm">Manage multiple WhatsApp Business numbers from one dashboard.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-start">
-                    <i class="fas fa-clock text-3xl text-[#25D366] mb-3"></i>
-                    <h4 class="font-bold text-lg">24/7 uptime</h4>
-                    <p class="text-slate-500 text-sm">Reliable infrastructure with real‑time delivery.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-start">
-                    <i class="fas fa-shield-alt text-3xl text-[#25D366] mb-3"></i>
-                    <h4 class="font-bold text-lg">Enterprise security</h4>
-                    <p class="text-slate-500 text-sm">End‑to‑end encryption and compliance ready.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="signup" class="py-20 px-6 bg-white border-t border-slate-200">
-        <div class="max-w-4xl mx-auto text-center">
-            <div
-                class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-4">
-                get started</div>
-            <h2 class="text-3xl md:text-5xl font-bold text-slate-800">Ready to <span class="text-[#25D366]">scale</span>
-                your WhatsApp?</h2>
-            <p class="text-slate-500 text-lg max-w-xl mx-auto mt-4">Sign up for a free trial or pick a plan. No credit card
-                required.</p>
-            <div class="mt-10 flex flex-wrap justify-center gap-4">
-                <a href="#"
-                    class="btn-wa text-white font-semibold px-10 py-4 rounded-full shadow-lg shadow-emerald-200 flex items-center gap-2 text-lg">
-                    <i class="fab fa-whatsapp"></i> Sign Up Free
-                </a>
-                <a href="#"
-                    class="border border-slate-300 hover:border-[#25D366] hover:text-[#25D366] text-slate-600 font-medium px-10 py-4 rounded-full flex items-center gap-2 text-lg transition">
-                    <i class="fas fa-comment-dots"></i> Contact sales
-                </a>
-            </div>
-            <p class="text-sm text-slate-400 mt-6"><i class="fas fa-check-circle text-[#25D366] mr-1"></i> 14‑day trial ·
-                cancel anytime</p>
-        </div>
-    </section>
-    
+        .card-footer {
+            padding: 0.75rem 1.25rem;
+        }
+    </style>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-        const modal = document.getElementById('signupModal');
-        const closeModal = document.getElementById('closeModal');
-        const planType = document.getElementById('planType');
+    const modal = document.getElementById('signupModal');
+    const closeModal = document.getElementById('closeModal');
+    const planType = document.getElementById('planType');
 
-        // Open Modal for all plan buttons
-        document.querySelectorAll('.signup-btn').forEach(button => {
-            button.addEventListener('click', function() {
+    // Open Modal for all plan buttons
+    document.querySelectorAll('.signup-btn').forEach(button => {
+        button.addEventListener('click', function() {
 
-                let plan = this.getAttribute('data-plan');
-                planType.value = plan;
+            let plan = this.getAttribute('data-plan');
+            planType.value = plan;
 
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-            });
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         });
+    });
 
-        // Close Modal Button
-        closeModal.addEventListener('click', function() {
+    // Close Modal Button
+    closeModal.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    });
+
+    // Close Modal Outside Click
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-        });
+        }
+    });
 
-        // Close Modal Outside Click
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }
-        });
+    // Signup Form Submit
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
 
-        // Signup Form Submit
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            e.preventDefault();
+        document.getElementById('loading').classList.remove('hidden');
 
-            document.getElementById('loading').classList.remove('hidden');
+        let formData = new FormData(this);
 
-            let formData = new FormData(this);
+        fetch("{{ route('user.create') }}", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json"
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
 
-            fetch("{{ route('user.create') }}", {
-                    method: "POST",
-                    headers: {
-                        "Accept": "application/json"
-                    },
-                    body: formData
-                })
-                .then(res => res.json())
-                .then(data => {
+                document.getElementById('loading').classList.add('hidden');
 
-                    document.getElementById('loading').classList.add('hidden');
+                if (!data.success) {
+                    alert(data.message);
+                    return;
+                }
 
-                    if (!data.success) {
-                        alert(data.message);
-                        return;
+                var options = {
+                    key: data.razorpay_key,
+                    amount: data.amount,
+                    currency: data.currency,
+                    order_id: data.order_id,
+                    name: "WhatsApp Subscription",
+                    description: data.plan_name,
+
+                    handler: function(response) {
+
+                        fetch("{{ route('payment.verify') }}", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Accept": "application/json",
+                                    "X-CSRF-TOKEN": document.querySelector(
+                                        'meta[name="csrf-token"]').content
+                                },
+                                body: JSON.stringify({
+                                    user_id: data.user_id,
+                                    amount: data.amount,
+                                    currency: data.currency,
+                                    plan_id: data.plan_id,
+                                    razorpay_payment_id: response
+                                        .razorpay_payment_id,
+                                    razorpay_order_id: response
+                                        .razorpay_order_id,
+                                    razorpay_signature: response
+                                        .razorpay_signature
+                                })
+                            })
+                            .then(res => res.json())
+                            .then(result => {
+
+                                if (result.success) {
+                                    window.location.href = result
+                                        .redirect_url;
+                                } else {
+                                    alert(result.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error(error);
+                                alert('Payment verification failed');
+                            });
                     }
+                };
 
-                    var options = {
-                        key: data.razorpay_key,
-                        amount: data.amount,
-                        currency: data.currency,
-                        order_id: data.order_id,
-                        name: "WhatsApp Subscription",
-                        description: data.plan_name,
+                var rzp = new Razorpay(options);
+                rzp.open();
 
-                        handler: function(response) {
+            })
+            .catch(error => {
+                document.getElementById('loading').classList.add('hidden');
+                console.error(error);
+            });
+    });
+</script>
 
-                            fetch("{{ route('payment.verify') }}", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        "Accept": "application/json",
-                                        "X-CSRF-TOKEN": document.querySelector(
-                                            'meta[name="csrf-token"]').content
-                                    },
-                                    body: JSON.stringify({
-                                        user_id: data.user_id,
-                                        amount: data.amount,
-                                        currency: data.currency,
-                                        plan_id: data.plan_id,
-                                        razorpay_payment_id: response
-                                            .razorpay_payment_id,
-                                        razorpay_order_id: response
-                                            .razorpay_order_id,
-                                        razorpay_signature: response
-                                            .razorpay_signature
-                                    })
-                                })
-                                .then(res => res.json())
-                                .then(result => {
-
-                                    if (result.success) {
-                                        window.location.href = result
-                                            .redirect_url;
-                                    } else {
-                                        alert(result.message);
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                    alert('Payment verification failed');
-                                });
-                        }
-                    };
-
-                    var rzp = new Razorpay(options);
-                    rzp.open();
-
-                })
-                .catch(error => {
-                    document.getElementById('loading').classList.add('hidden');
-                    console.error(error);
-                });
-        });
-    </script>
 @endsection
+
+<!-- Add this to your layout head section for Font Awesome icons -->
+@push('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+@endpush

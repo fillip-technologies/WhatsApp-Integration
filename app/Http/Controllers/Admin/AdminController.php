@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Events\InvoiceEvent;
+use App\Exports\PaymentDataExport;
 use App\Http\Controllers\Controller;
 use App\Models\ConfigData;
 use App\Models\Payment;
@@ -12,6 +13,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Browsershot\Browsershot;
 
 class AdminController extends Controller
@@ -157,5 +159,9 @@ public function invoicedata($id)
         }else{
             return back()->with('error','Something went wrong');
         }
+    }
+
+    public function exportPaymentdata(){
+        return Excel::download(new PaymentDataExport,'payments.xlsx');
     }
 }

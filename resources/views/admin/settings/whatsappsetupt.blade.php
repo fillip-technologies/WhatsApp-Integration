@@ -166,7 +166,7 @@
                 </div>
 
                 <!-- Status Indicators -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 p-6">
                     <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
                         <div class="flex items-center justify-between">
                             <span class="text-sm font-medium text-gray-700">Phone ID Status</span>

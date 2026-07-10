@@ -207,7 +207,7 @@
                                     @if (isset($viewdata->plan->price))
                                         <span
                                             class="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-800 text-xs font-medium">
-                                            ${{ $viewdata->plan->price }}
+                                            ₹{{ $viewdata->plan->price }}
                                         </span>
                                     @else
                                         N/A

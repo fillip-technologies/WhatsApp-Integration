@@ -41,7 +41,59 @@
                     <form action="{{ route('storewhatsappsetup') }}" method="POST" id="whatsappConfigForm">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                           
                             <div>
+                                <div class="space-y-2">
+                                    <label for="whatsapp_phone_number_id" class="block text-sm font-medium text-gray-700">
+                                        <span class="flex items-center">
+                                            <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                                </path>
+                                            </svg>
+                                            WhatsApp Phone Number ID
+                                        </span>
+                                        <span class="text-red-500 ml-1">*</span>
+                                    </label>
+                                    <input type="text"
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 @error('phone_number') border-red-500 ring-2 ring-red-500 @enderror"
+                                        id="phone_number" name="phone_number" value="{{ old('phone_number') }}"
+                                        placeholder="Enter Phone Number ID">
+                                    @error('phone_number')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                    @enderror
+                                    
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <div class="space-y-2">
+                                    <label for="whatsapp_business_account_id"
+                                        class="block text-sm font-medium text-gray-700">
+                                        <span class="flex items-center">
+                                            <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                                </path>
+                                            </svg>
+                                            WhatsApp Business Account ID
+                                        </span>
+                                        <span class="text-red-500 ml-1">*</span>
+                                    </label>
+                                    <input type="text"
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 @error('business_id') border-red-500 ring-2 ring-red-500 @enderror"
+                                        id="business_id" name="business_id"
+                                        value="{{ old('business_id') }}" placeholder="Enter Business Account ID">
+                                    @error('business_id')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                    @enderror
+                                   
+                                </div>
+                            </div>
+ <div>
                                 @if(AdminLogin())
                                  <div class="space-y-2 hidden">
                                     <label for="whatsapp_business_account_id"
@@ -97,58 +149,6 @@
                                 @endif
                                
                             </div>
-                            <div>
-                                <div class="space-y-2">
-                                    <label for="whatsapp_phone_number_id" class="block text-sm font-medium text-gray-700">
-                                        <span class="flex items-center">
-                                            <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                                </path>
-                                            </svg>
-                                            WhatsApp Phone Number ID
-                                        </span>
-                                        <span class="text-red-500 ml-1">*</span>
-                                    </label>
-                                    <input type="text"
-                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 @error('phone_number') border-red-500 ring-2 ring-red-500 @enderror"
-                                        id="phone_number" name="phone_number" value="{{ old('phone_number') }}"
-                                        placeholder="Enter Phone Number ID">
-                                    @error('phone_number')
-                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                    
-                                </div>
-                            </div>
-
-
-                            <div>
-                                <div class="space-y-2">
-                                    <label for="whatsapp_business_account_id"
-                                        class="block text-sm font-medium text-gray-700">
-                                        <span class="flex items-center">
-                                            <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
-                                                </path>
-                                            </svg>
-                                            WhatsApp Business Account ID
-                                        </span>
-                                        <span class="text-red-500 ml-1">*</span>
-                                    </label>
-                                    <input type="text"
-                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 @error('business_id') border-red-500 ring-2 ring-red-500 @enderror"
-                                        id="business_id" name="business_id"
-                                        value="{{ old('business_id') }}" placeholder="Enter Business Account ID">
-                                    @error('business_id')
-                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                   
-                                </div>
-                            </div>
-
 
                         </div>
 

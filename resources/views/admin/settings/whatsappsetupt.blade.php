@@ -40,7 +40,7 @@
                 <div class="p-6">
                     <form action="{{ route('storewhatsappsetup') }}" method="POST" id="whatsappConfigForm">
                         @csrf
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="grid grid-cols-1 {{ AdminLogin() ? 'md:grid-cols-2' : 'md:grid-cols-2' }} gap-6">
                             <div>
                                 @if(AdminLogin())
                                  <div class="space-y-2 hidden">

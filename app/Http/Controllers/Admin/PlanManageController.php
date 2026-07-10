@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\Plan;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 class PlanManageController extends Controller
@@ -95,8 +96,13 @@ class PlanManageController extends Controller
 }
 
     public function paymentStatus(){
-        $data = Payment::with(['user:id,first_name,last_name,email','plan'])->get();
-        return view('admin.payments.payment');
+        $datas = Payment::with(['user:id,first_name,last_name,email','plan'])->get();
+        $totalRevanu = Payment::sum('amount');
+        $planeActive = Subscription::where('status','active')->count();
+        $failpayment = Payment::where('status','failed')->count();
+        $pendingpay = Payment::where('status','pending')->count();
+
+        return view('admin.payments.payment',compact('datas','totalRevanu','planeActive','failpayment','pendingpay'));
 
     }
 }

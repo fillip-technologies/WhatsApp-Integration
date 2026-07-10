@@ -9,21 +9,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminAuthMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
-        $user = Auth::user();
-        if($user->role == 'admin'){
-         return $next($request);
+        if (!Auth::check()) {
+            return redirect()->route('login')
+                ->with('error', 'Please Login First');
         }
-    }else{
-        return back()->with('error','Please Login First');
-    }
-
+        $user = Auth::user();
+        if ($user->role !== 'admin') {
+            return redirect()->back()
+                ->with('error', 'Unauthorized Access');
+        }
+        return $next($request);
     }
 }

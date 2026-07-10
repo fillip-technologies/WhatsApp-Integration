@@ -456,6 +456,7 @@
 
                         handler: function(response) {
 
+
                             fetch("{{ route('payment.verify') }}", {
                                     method: "POST",
                                     headers: {

@@ -61,7 +61,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-600">Total Revenue</p>
-                    <p class="text-2xl font-bold text-gray-800">$12,847</p>
+                    <p class="text-2xl font-bold text-gray-800">{{ number_format($totalRevanu,2) ?? 0.00 }}</p>
                 </div>
                 <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                     <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -77,7 +77,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-600">Active Subscriptions</p>
-                    <p class="text-2xl font-bold text-gray-800">342</p>
+                    <p class="text-2xl font-bold text-gray-800">{{ $planeActive ?? 0 }}</p>
                 </div>
                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                     <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
@@ -92,7 +92,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-600">Pending Payments</p>
-                    <p class="text-2xl font-bold text-gray-800">23</p>
+                    <p class="text-2xl font-bold text-gray-800">{{ $pendingpay ?? 0 }}</p>
                 </div>
                 <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
                     <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
@@ -107,7 +107,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-600">Failed Payments</p>
-                    <p class="text-2xl font-bold text-gray-800">8</p>
+                    <p class="text-2xl font-bold text-gray-800">{{ $failpayment ?? 0 }}</p>
                 </div>
                 <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
                     <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
@@ -149,51 +149,51 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    {{-- Payment Row 1 - Paid --}}
-                    <tr class="hover:bg-gray-50 transition duration-150">
+                  @forelse ($datas as $items)
+                     <tr class="hover:bg-gray-50 transition duration-150">
                         <td class="px-6 py-4">
                             <input type="checkbox" class="rounded border-gray-300">
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                                    <span class="text-sm font-bold text-blue-600">JD</span>
+                                    <span class="text-sm font-bold text-blue-600">{{ substr($items->user->first_name, 0, 2) }}</span>
                                 </div>
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-900">John Doe</p>
-                                    <p class="text-xs text-gray-500">john.doe@email.com</p>
+                                    <p class="text-sm font-medium text-gray-900">{{ $items->user->first_name ?? '-' }} {{ $items->user->last_name ?? '-' }}</p>
+                                    <p class="text-xs text-gray-500">{{ $items->user->email ?? '-' }}</p>
                                     <span class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-purple-100 text-purple-800 rounded">
-                                        Premium Pro
+                                      {{ $items->plan->plans ?? "-" }}
                                     </span>
                                 </div>
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">#TXN-78901234</p>
-                            <p class="text-xs text-gray-500">Visa **** 4242</p>
+                            <p class="text-sm text-gray-900">{{ $items->razorpay_order_id  ?? '-'}}</p>
+                            <p class="text-xs text-gray-500">{{ $items->razorpay_payment_id ?? "_"}}</p>
                         </td>
                         <td class="px-6 py-4">
                             <p class="text-sm font-medium text-gray-900">$29.99</p>
-                            <p class="text-xs text-gray-500">Monthly</p>
+                            <p class="text-xs text-gray-500"> {{ $items->plan->validity_day ?? '-' }}Day</p>
                         </td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
                                 <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5"></span>
-                                Paid
+                               {{ $items->status ?? '-' }}
                             </span>
                         </td>
                         <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">Jul 15, 2026</p>
-                            <p class="text-xs text-gray-500">2 days ago</p>
+                            <p class="text-sm text-gray-900">{{ $items->paid_at->format('M d, Y') }}</p>
+                            <p class="text-xs text-gray-500">{{ $items->paid_at->diffForHumans() }}</p>
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex space-x-2">
-                                <button class="text-blue-600 hover:text-blue-900">
+                                {{-- <button class="text-blue-600 hover:text-blue-900">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                     </svg>
-                                </button>
+                                </button> --}}
                                 <button class="text-gray-600 hover:text-gray-900">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
@@ -201,264 +201,13 @@
                                 </button>
                             </div>
                         </td>
-                    </tr>
-
-                    {{-- Payment Row 2 - Pending --}}
-                    <tr class="hover:bg-gray-50 transition duration-150">
-                        <td class="px-6 py-4">
-                            <input type="checkbox" class="rounded border-gray-300">
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
-                                    <span class="text-sm font-bold text-purple-600">SM</span>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-900">Sarah Miller</p>
-                                    <p class="text-xs text-gray-500">sarah.m@email.com</p>
-                                    <span class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-indigo-100 text-indigo-800 rounded">
-                                        Pro Plus
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">#TXN-78901235</p>
-                            <p class="text-xs text-gray-500">PayPal</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm font-medium text-gray-900">$49.99</p>
-                            <p class="text-xs text-gray-500">Monthly</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800">
-                                <span class="w-1.5 h-1.5 bg-yellow-500 rounded-full mr-1.5 animate-pulse"></span>
-                                Pending
-                            </span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">Jul 14, 2026</p>
-                            <p class="text-xs text-gray-500">1 day ago</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex space-x-2">
-                                <button class="text-blue-600 hover:text-blue-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="text-gray-600 hover:text-gray-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
-                    {{-- Payment Row 3 - Failed --}}
-                    <tr class="hover:bg-gray-50 transition duration-150">
-                        <td class="px-6 py-4">
-                            <input type="checkbox" class="rounded border-gray-300">
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 flex items-center justify-center">
-                                    <span class="text-sm font-bold text-red-600">RW</span>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-900">Robert Wilson</p>
-                                    <p class="text-xs text-gray-500">robert.w@email.com</p>
-                                    <span class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-blue-100 text-blue-800 rounded">
-                                        Basic
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">#TXN-78901236</p>
-                            <p class="text-xs text-gray-500">Visa **** 1234</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm font-medium text-gray-900">$9.99</p>
-                            <p class="text-xs text-gray-500">Monthly</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">
-                                <span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-1.5"></span>
-                                Failed
-                            </span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">Jul 12, 2026</p>
-                            <p class="text-xs text-gray-500">3 days ago</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex space-x-2">
-                                <button class="text-blue-600 hover:text-blue-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="text-gray-600 hover:text-gray-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                                    </svg>
-                                </button>
-                                <button class="text-green-600 hover:text-green-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
-                    {{-- Payment Row 4 - Refunded --}}
-                    <tr class="hover:bg-gray-50 transition duration-150">
-                        <td class="px-6 py-4">
-                            <input type="checkbox" class="rounded border-gray-300">
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
-                                    <span class="text-sm font-bold text-green-600">EJ</span>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-900">Emily Johnson</p>
-                                    <p class="text-xs text-gray-500">emily.j@email.com</p>
-                                    <span class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-yellow-100 text-yellow-800 rounded">
-                                        Enterprise
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">#TXN-78901237</p>
-                            <p class="text-xs text-gray-500">Amex **** 5678</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm font-medium text-gray-900">$99.99</p>
-                            <p class="text-xs text-gray-500">Annually</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800">
-                                <span class="w-1.5 h-1.5 bg-gray-500 rounded-full mr-1.5"></span>
-                                Refunded
-                            </span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">Jul 10, 2026</p>
-                            <p class="text-xs text-gray-500">5 days ago</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex space-x-2">
-                                <button class="text-blue-600 hover:text-blue-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="text-gray-600 hover:text-gray-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
-                    {{-- Payment Row 5 - Paid with avatar initials --}}
-                    <tr class="hover:bg-gray-50 transition duration-150">
-                        <td class="px-6 py-4">
-                            <input type="checkbox" class="rounded border-gray-300">
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center">
-                                    <span class="text-sm font-bold text-pink-600">AK</span>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium text-gray-900">Amanda King</p>
-                                    <p class="text-xs text-gray-500">amanda.k@email.com</p>
-                                    <span class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-purple-100 text-purple-800 rounded">
-                                        Premium Pro
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">#TXN-78901238</p>
-                            <p class="text-xs text-gray-500">Stripe</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm font-medium text-gray-900">$29.99</p>
-                            <p class="text-xs text-gray-500">Monthly</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
-                                <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5"></span>
-                                Paid
-                            </span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="text-sm text-gray-900">Jul 8, 2026</p>
-                            <p class="text-xs text-gray-500">1 week ago</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex space-x-2">
-                                <button class="text-blue-600 hover:text-blue-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button>
-                                <button class="text-gray-600 hover:text-gray-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    </tr> 
+                  @empty
+                      
+                  @endforelse
                 </tbody>
             </table>
         </div>
 
-        {{-- Pagination --}}
-        <div class="px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between">
-            <p class="text-sm text-gray-700">
-                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">342</span> results
-            </p>
-            <div class="flex space-x-2 mt-4 sm:mt-0">
-                <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-sm text-gray-700">Previous</button>
-                <button class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">1</button>
-                <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-sm text-gray-700">2</button>
-                <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-sm text-gray-700">3</button>
-                <span class="px-3 py-1 text-sm text-gray-700">...</span>
-                <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-sm text-gray-700">68</button>
-                <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-sm text-gray-700">Next</button>
-            </div>
-        </div>
-    </div>
-
-    {{-- Bulk Actions --}}
-    <div class="mt-4 flex flex-wrap items-center gap-3 bg-gray-50 rounded-lg p-4">
-        <p class="text-sm text-gray-700 font-medium">Bulk Actions:</p>
-        <button class="px-4 py-1.5 text-sm bg-green-600 text-white rounded hover:bg-green-700 transition duration-200">
-            Mark as Paid
-        </button>
-        <button class="px-4 py-1.5 text-sm bg-yellow-600 text-white rounded hover:bg-yellow-700 transition duration-200">
-            Send Reminder
-        </button>
-        <button class="px-4 py-1.5 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition duration-200">
-            Cancel Selected
-        </button>
-        <button class="px-4 py-1.5 text-sm bg-gray-600 text-white rounded hover:bg-gray-700 transition duration-200">
-            Export Selected
-        </button>
-    </div>
 </div>
 @endsection

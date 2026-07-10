@@ -138,5 +138,5 @@ public function SearchUser(Request $request)
         ->paginate(10);
 
     return view('admin.users.index', compact('users'));
-}
+ }
 }

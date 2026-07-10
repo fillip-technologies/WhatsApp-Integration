@@ -1,5 +1,3 @@
-<h1>hello from</h1>
-
 
  <header class="bg-white/90 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-slate-200/60">
      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-4 flex flex-wrap items-center justify-between">

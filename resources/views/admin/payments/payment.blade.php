@@ -173,7 +173,7 @@
                             <p class="text-xs text-gray-500">{{ $items->razorpay_payment_id ?? "_"}}</p>
                         </td>
                         <td class="px-6 py-4">
-                            <p class="text-sm font-medium text-gray-900">$29.99</p>
+                            <p class="text-sm font-medium text-gray-900">&#8377;{{ $items->amount ?? "-" }}</p>
                             <p class="text-xs text-gray-500"> {{ $items->plan->validity_day ?? '-' }}Day</p>
                         </td>
                         <td class="px-6 py-4">

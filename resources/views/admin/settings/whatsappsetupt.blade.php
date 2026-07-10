@@ -171,7 +171,7 @@
                             <span class="text-sm font-medium text-gray-700">Phone ID Status</span>
                             <span
                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ config('app.WHATSAPP_PHONE_NUMBER_ID') ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                {{ iseet(getUserConfig()) ? '✓ Configured' : 'Not Set' }}
+                                {{ config('app.WHATSAPP_PHONE_NUMBER_ID')  ? '✓ Configured' : 'Not Set' }}
                             </span>
                         </div>
                     </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\RegistrationEmail;
 use App\Models\Payment;
 use App\Models\Plan;
+use App\Models\Subscription;
 use App\Models\Templates;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -195,5 +196,19 @@ class UserManagementController extends Controller
 
 public function settingUser(){
     return view('admin.settings.user_setting');
+}
+
+public function userpayment(){
+    if(Auth::check()){
+        $user = Auth::user();
+        if($user->role == 'user'){
+             $datas = Payment::with(['user','plan'])->where('user_id',$user->id)->get();
+              $totalRevanu = $datas->sum('amount');
+             $planeActive = Subscription::where('status','active')->where('user_id',$user->id)->count();
+             $failpayment = Payment::where('status','failed')->where('user_id',$user->id)->count();
+             $pendingpay = Payment::where('status','pending')->where('user_id',$user->id)->count();
+           return view('admin.payments.payment',compact('datas','totalRevanu','planeActive','failpayment','pendingpay'));
+        }
+    }
 }
 }

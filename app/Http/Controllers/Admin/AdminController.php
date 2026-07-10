@@ -161,7 +161,7 @@ public function invoicedata($id)
         }
     }
 
-    public function exportPaymentdata(){
-        return Excel::download(new PaymentDataExport,'payments.xlsx');
-    }
+        public function exportPaymentdata(){
+            return Excel::download(new PaymentDataExport,'paymentslist.xlsx');
+        }
 }

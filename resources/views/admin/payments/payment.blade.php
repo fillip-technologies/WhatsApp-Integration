@@ -9,18 +9,20 @@
                 <p class="text-gray-600">View and manage all user payments and subscriptions</p>
             </div>
             <div class="mt-4 md:mt-0 flex flex-wrap gap-3">
-                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 flex items-center">
+                {{-- <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
                     Add Payment
-                </button>
+                </button> --}}
+                @if(!UserLogin())
                 <a href="{{ route('exportPaymentdata') }}" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-200 flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                     </svg>
                     Export
                 </a>
+                @endif
             </div>
         </div>
 
@@ -143,9 +145,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Date
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Actions
-                        </th>
+                       
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -186,21 +186,7 @@
                             <p class="text-sm text-gray-900">{{ $items->paid_at->format('M d, Y') }}</p>
                             <p class="text-xs text-gray-500">{{ $items->paid_at->diffForHumans() }}</p>
                         </td>
-                        <td class="px-6 py-4">
-                            <div class="flex space-x-2">
-                                {{-- <button class="text-blue-600 hover:text-blue-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                </button> --}}
-                                <button class="text-gray-600 hover:text-gray-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
+                       
                     </tr> 
                   @empty
                       

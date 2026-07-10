@@ -61,7 +61,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-600">Total Revenue</p>
-                    <p class="text-2xl font-bold text-gray-800">{{ number_format($totalRevanu,2) ?? 0.00 }}</p>
+                    <p class="text-2xl font-bold text-gray-800">&#8377;{{ number_format($totalRevanu,2) ?? 0.00 }}</p>
                 </div>
                 <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                     <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">

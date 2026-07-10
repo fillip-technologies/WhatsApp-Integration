@@ -127,9 +127,7 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            <input type="checkbox" class="rounded border-gray-300">
-                        </th>
+                       
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             User & Plan
                         </th>
@@ -151,9 +149,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                   @forelse ($datas as $items)
                      <tr class="hover:bg-gray-50 transition duration-150">
-                        <td class="px-6 py-4">
-                            <input type="checkbox" class="rounded border-gray-300">
-                        </td>
+                    
                         <td class="px-6 py-4">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">

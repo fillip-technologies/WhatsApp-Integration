@@ -41,7 +41,7 @@
                             <span class="text-sm font-medium text-gray-700">Phone ID Status</span>
                             <span
                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ config('app.WHATSAPP_PHONE_NUMBER_ID') ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                {{ getUserConfig()->phone_number ? '✓ Configured' : 'Not Set' }} 
+                                {{ !empty(getUserConfig()->phone_number) ? '✓ Configured' : 'Not Set' }} 
                             </span>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                             <span class="text-sm font-medium text-gray-700">Business ID Status</span>
                             <span
                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ config('app.WHATSAPP_BUSINESS_ACCOUNT_ID') ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                {{getUserConfig()->business_id ? '✓ Configured' : 'Not Set' }}
+                                {{!empty(getUserConfig()->business_id) ? '✓ Configured' : 'Not Set' }}
                             </span>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             <span class="text-sm font-medium text-gray-700">Token Status</span>
                             <span
                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ config('app.WHATSAPP_TOKEN') ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                {{ getUserConfig()->access_token ? '✓ Configured' : 'Not Set' }}
+                                {{ !empty(getUserConfig()->access_token) ? '✓ Configured' : 'Not Set' }}
                             </span>
                         </div>
                     </div>

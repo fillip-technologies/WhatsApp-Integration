@@ -41,7 +41,34 @@
                     <form action="{{ route('storewhatsappsetup') }}" method="POST" id="whatsappConfigForm">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                           
+                            <div>
+                               
+                                <div class="space-y-2">
+                                    <label for="whatsapp_business_account_id"
+                                        class="block text-sm font-medium text-gray-700">
+                                        <span class="flex items-center">
+                                            <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                                </path>
+                                            </svg>
+                                           Select User
+                                        </span>
+                                        <span class="text-red-500 ml-1">*</span>
+                                    </label>
+                                    <select name="user_id" id="" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 @error('user_id') border-red-500 ring-2 ring-red-500 @enderror">
+                                        <option value="">Select User</option>
+                                        @foreach (getUser() as $items)
+                                            <option value="{{ $items->id }}">{{ $items->first_name }} {{ $items->last_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('user_id')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                    @enderror
+                                 
+                                </div>
+                            </div>
                             <div>
                                 <div class="space-y-2">
                                     <label for="whatsapp_phone_number_id" class="block text-sm font-medium text-gray-700">
@@ -93,62 +120,7 @@
                                    
                                 </div>
                             </div>
- <div>
-                                @if(AdminLogin())
-                                 <div class="space-y-2 hidden">
-                                    <label for="whatsapp_business_account_id"
-                                        class="block text-sm font-medium text-gray-700">
-                                        <span class="flex items-center">
-                                            <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
-                                                </path>
-                                            </svg>
-                                           Select User
-                                        </span>
-                                        <span class="text-red-500 ml-1">*</span>
-                                    </label>
-                                    <select name="user_id" id="" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 @error('user_id') border-red-500 ring-2 ring-red-500 @enderror">
-                                        <option value="">Select User</option>
-                                        @foreach (getUser() as $items)
-                                            <option value="{{ $items->id }}">{{ $items->first_name }} {{ $items->last_name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('user_id')
-                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                 
-                                </div>
-                                @else
-                                 <div class="space-y-2">
-                                    <label for="whatsapp_business_account_id"
-                                        class="block text-sm font-medium text-gray-700">
-                                        <span class="flex items-center">
-                                            <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
-                                                </path>
-                                            </svg>
-                                           Select User
-                                        </span>
-                                        <span class="text-red-500 ml-1">*</span>
-                                    </label>
-                                    <select name="user_id" id="" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 @error('user_id') border-red-500 ring-2 ring-red-500 @enderror">
-                                        <option value="">Select User</option>
-                                        @foreach (getUser() as $items)
-                                            <option value="{{ $items->id }}">{{ $items->first_name }} {{ $items->last_name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('user_id')
-                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                 
-                                </div>
-                                @endif
-                               
-                            </div>
+
 
                         </div>
 

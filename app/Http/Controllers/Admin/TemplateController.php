@@ -95,9 +95,12 @@ class TemplateController extends Controller
                 ];
             }
         }
-            $response = Http::withToken(env('WHATSAPP_TOKEN'))
+
+            $access_token = getUserConfig()->access_token ? getUserConfig()->access_token : env('WHATSAPP_TOKEN'); 
+            $business_id = getUserConfig()->business_id ? getUserConfig()->business_id : env('WHATSAPP_BUSINESS_ACCOUNT_ID');
+             $response = Http::withToken($access_token)
                 ->post(
-                    "https://graph.facebook.com/v25.0/".env('WHATSAPP_BUSINESS_ACCOUNT_ID')."/message_templates",
+                    "https://graph.facebook.com/v25.0/".$business_id."/message_templates",
                     [
                         'name'       => strtolower(str_replace(' ', '_', $request->name)),
                         'category'   => strtoupper($request->category),

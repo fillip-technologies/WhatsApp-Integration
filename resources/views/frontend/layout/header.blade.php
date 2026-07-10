@@ -12,13 +12,13 @@
 
          </div>
 
-         <!-- nav + signup / signin -->
+   
          <div class="flex items-center gap-3 mt-2 sm:mt-0">
              <a href="{{ route('plansView') }}"
                  class="hidden md:inline text-sm font-medium text-slate-600 hover:text-[#1a3a4f] transition px-2">Plans</a>
              <a href="#features"
                  class="hidden md:inline text-sm font-medium text-slate-600 hover:text-[#1a3a4f] transition px-2">Features</a>
-             <!-- Sign Up button (primary) -->
+             
              <a href="#signup"
                  class="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1da55a] text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md shadow-emerald-200 transition">
                  <i class="fas fa-user-plus"></i> Sign Up

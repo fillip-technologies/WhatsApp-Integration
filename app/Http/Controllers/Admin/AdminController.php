@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ConfigData;
 use App\Models\Payment;
 use App\Models\User;
+use App\Models\WhatsappAccount;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -118,25 +119,43 @@ public function invoicedata($id)
     return $pdf->download('report.pdf');
 }
 
-   public function deleteUser($id){
-     $user = User::findOrFail($id);
+    public function deleteUser($id){
+            $user = User::findOrFail($id);
 
-    if($user){
-        $user->delete();
-        return back()->with('success','User Deleted SuccessFul');
-    }else{
-        return back()->with('error','User Deletion Failed');
+            if($user){
+                $user->delete();
+                return back()->with('success','User Deleted SuccessFul');
+            }else{
+                return back()->with('error','User Deletion Failed');
+            }
     }
-}
-public function SearchUser(Request $request)
-{
-    $getdata = $request->data;
+        public function SearchUser(Request $request)
+    {
+            $getdata = $request->data;
+            $users = User::where('first_name', 'LIKE', '%' . $getdata . '%')
+                ->orWhere('email', 'LIKE', '%' . $getdata . '%')
+                ->orWhere('company_name', 'LIKE', '%' . $getdata . '%')
+                ->paginate(10);
 
-    $users = User::where('first_name', 'LIKE', '%' . $getdata . '%')
-        ->orWhere('email', 'LIKE', '%' . $getdata . '%')
-        ->orWhere('company_name', 'LIKE', '%' . $getdata . '%')
-        ->paginate(10);
+            return view('admin.users.index', compact('users'));
+    }
 
-    return view('admin.users.index', compact('users'));
- }
+    public function whatsappsetupView(){
+        return view('admin.settings.whatsappsetupt');
+    }
+    public function storewhatsappsetupView(Request $request){
+        
+        $request->validate([
+            'user_id'=>'required',
+            'phone_number'=>'required|integer',
+            'business_id'=>'required|integer',
+            'access_token'=>'required|string'
+        ]);
+        $data = WhatsappAccount::create($request->all());
+        if($data){
+            return back()->with('success','Whatsapp Data Configured');
+        }else{
+            return back()->with('error','Something went wrong');
+        }
+    }
 }

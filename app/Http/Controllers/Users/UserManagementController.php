@@ -193,5 +193,7 @@ class UserManagementController extends Controller
 
 
 
-
+public function settingUser(){
+    return view('admin.settings.user_setting');
+}
 }

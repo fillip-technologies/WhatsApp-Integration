@@ -19,6 +19,8 @@ Route::get('/usre/view/{id}/data','viewUserDetails')->name('user.view');
 Route::delete('/delete/uers/{id}','deleteUser')->name('user.delete');
 Route::get('/invoice/generate/{id}','invoicedata')->name('invoicedata');
 Route::get('/serach/user','SearchUser')->name('search.users');
+Route::get('/whatsappsetup/view','whatsappsetupView')->name('whatsappsetupView');
+Route::post('/storewhatsappsetup','storewhatsappsetupView')->name('storewhatsappsetup');
 
 // Template Management
 

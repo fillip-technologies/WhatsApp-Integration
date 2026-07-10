@@ -199,9 +199,19 @@
                     All Templates
                 </a>
 
+                <a href="{{ route('whatsappsetupView') }}"
+                    class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
 
+                    <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
+                        <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M4 3a2 2 0 012-2h5.586a2 2 0 011.414.586l2.414 2.414A2 2 0 0116 5.414V17a2 2 0 01-2 2H6a2 2 0 01-2-2V3zm4 5a1 1 0 000 2h4a1 1 0 100-2H8zm0 4a1 1 0 100 2h4a1 1 0 100-2H8z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
 
-
+                Whatsapp SetUp
+                </a>
                 <div class="pt-4 mt-4 border-t border-white/10">
                     <div class="px-3 py-2 bg-white/5 rounded-xl">
                         <p class="text-purple-300 text-xs font-semibold uppercase tracking-wider">Account</p>
@@ -263,7 +273,7 @@
                     My Template
                 </a>
 
-                <a href="#"
+                <a href="{{ route('settingUser') }}"
                     class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                     <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
                         <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">

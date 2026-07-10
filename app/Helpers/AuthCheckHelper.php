@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\WhatsappAccount;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,5 +28,16 @@ if(!function_exists('UserLogin')){
     return redirect()->route('login');
     }
 
+    }
+}
+
+if(!function_exists('getUserConfig')){
+    function getUserConfig(){
+            $users = Auth::user();
+            if($users->role == 'user'){
+            $getdata = WhatsappAccount::where('user_id',$users->id)->first();
+            return $getdata;
+            }
+        
     }
 }

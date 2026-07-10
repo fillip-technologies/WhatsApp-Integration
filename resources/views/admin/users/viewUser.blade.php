@@ -312,7 +312,7 @@
                                     {{ $viewdata->razorpay_signature ?? 'N/A' }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-900 font-bold">
                                     @if (isset($viewdata->amount))
-                                        <span class="text-emerald-600">${{ number_format($viewdata->amount, 2) }}</span>
+                                        <span class="text-emerald-600">₹{{ number_format($viewdata->amount, 2) }}</span>
                                     @else
                                         N/A
                                     @endif

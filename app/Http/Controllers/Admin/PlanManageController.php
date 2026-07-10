@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -92,4 +93,10 @@ class PlanManageController extends Controller
         ->back()
         ->with('success', 'Plan deleted successfully.');
 }
+
+    public function paymentStatus(){
+        $data = Payment::with(['user:id,first_name,last_name,email','plan'])->get();
+        return view('admin.payments.payment');
+
+    }
 }

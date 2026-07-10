@@ -187,7 +187,6 @@
 
                 <a href="{{ route('index.template') }}"
                     class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
-
                     <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
                         <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
@@ -195,22 +194,39 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-
                     All Templates
                 </a>
 
                 <a href="{{ route('whatsappsetupView') }}"
-                    class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+                    class="{{ request()->routeIs('whatsappsetupView') ? 'bg-white/20 text-white' : 'text-purple-100 hover:bg-white/10' }}
+                    group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
 
                     <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
-                        <svg class="h-5 w-5 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M16.75 13.96c-.25-.13-1.47-.72-1.7-.8-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.96-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.25-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09 0 1.22.9 2.41 1.02 2.58.13.17 1.77 2.7 4.29 3.79.6.26 1.07.42 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.17.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29z" />
+                            <path
+                                d="M12.04 2C6.5 2 2 6.49 2 12c0 1.75.46 3.46 1.33 4.97L2 22l5.16-1.35A9.93 9.93 0 0012.04 22C17.56 22 22 17.51 22 12S17.56 2 12.04 2zm0 18.18c-1.58 0-3.12-.42-4.47-1.22l-.32-.19-3.06.8.82-2.98-.2-.31A8.14 8.14 0 013.86 12c0-4.51 3.67-8.18 8.18-8.18S20.22 7.49 20.22 12s-3.67 8.18-8.18 8.18z" />
+                        </svg>
+                    </div>
+
+                    Whatsapp SetUp
+                </a>
+
+                <a href="{{ route('paymentStatus') }}"
+                    class="{{ request()->routeIs('paymentStatus') ? 'bg-white/20 text-white' : 'text-purple-100 hover:bg-white/10' }}
+                    group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+
+                    <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
+                        <svg class="h-5 w-5 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
                             <path fill-rule="evenodd"
-                                d="M4 3a2 2 0 012-2h5.586a2 2 0 011.414.586l2.414 2.414A2 2 0 0116 5.414V17a2 2 0 01-2 2H6a2 2 0 01-2-2V3zm4 5a1 1 0 000 2h4a1 1 0 100-2H8zm0 4a1 1 0 100 2h4a1 1 0 100-2H8z"
+                                d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h2a1 1 0 110 2H5a1 1 0 01-1-1z"
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
 
-                Whatsapp SetUp
+                    Payment Status
                 </a>
                 <div class="pt-4 mt-4 border-t border-white/10">
                     <div class="px-3 py-2 bg-white/5 rounded-xl">

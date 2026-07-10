@@ -36,7 +36,7 @@ Route::delete('/delete/{id}/template','deleteTemplate')->name('delete.template')
 });
 
 Route::controller(PlanManageController::class)->group(function(){
-
+Route::get('/paymentStatus','paymentStatus')->name('paymentStatus');
 Route::get('/plan/list','listPlan')->name('plan.list');
 Route::get('/create/plan','CreatePlan')->name('create.plan');
 Route::get('/plan/edit/{id}','EditPlan')->name('edit.plan');

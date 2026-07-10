@@ -69,6 +69,7 @@
                                  
                                 </div>
                             </div>
+                            
                             <div>
                                 <div class="space-y-2">
                                     <label for="whatsapp_phone_number_id" class="block text-sm font-medium text-gray-700">
@@ -93,7 +94,6 @@
                                     
                                 </div>
                             </div>
-
 
                             <div>
                                 <div class="space-y-2">

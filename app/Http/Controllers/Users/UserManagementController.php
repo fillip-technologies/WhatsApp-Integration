@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\Events\ForgrtPasswordEvent;
 use App\Http\Controllers\Controller;
 use App\Mail\RegistrationEmail;
 use App\Models\Payment;
@@ -250,5 +251,12 @@ public function userpayment(){
             ]);
 
             return back()->with('success','Profile Updated SuccessFully'." ". $editdata->first_name ." ". $editdata->last_name);
+        }
+
+        public function forgetPassword($id){
+         $user = User::findOrFail($id);
+         $link = url('user/forget/password');
+         ForgrtPasswordEvent::dispatch($user,$link);
+         return back()->with('success','Check you Email Inbox');
         }
 }

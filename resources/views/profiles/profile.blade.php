@@ -1,6 +1,12 @@
 @extends('admin.include.app')
 
 @section('content')
+
+@if(session('success'))
+<script>
+    toastr.success("{{ session('success') }}");
+</script>
+@endif
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Breadcrumb -->
         <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-6">
@@ -255,10 +261,12 @@
                         </div>
                         @php
                             $editRoute = null;
+                            $forgetroute = null;
                             if (AdminLogin()) {
                                 $editRoute = route('admin.edit', $user->id);
                             } elseif (UserLogin()) {
                                 $editRoute = route('user.edit', $user->id);
+                                $forgetroute = route('user.forgetPassword', $user->id);
                             }
                         @endphp
                         <!-- Action Buttons -->
@@ -312,7 +320,7 @@
                 <div class="flex space-x-3">
                     <button onclick="closeModal('resetModal')"
                         class="flex-1 px-4 py-2.5 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition">Cancel</button>
-                    <form action="" method="POST" class="flex-1">
+                    <form action="{{ $forgetroute }}" method="POST" class="flex-1">
                         @csrf
                         @method('PUT')
                         <button type="submit"

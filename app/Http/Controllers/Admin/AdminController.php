@@ -187,7 +187,7 @@ public function invoicedata($id)
                 'last_name'=>'required',
                 'email'=>'required|email|exists:users,email',
                 'company_name'=>'required',
-                'phone'=>'required|integer',
+                'phone'=>'required|min:10',
                 'business_type'=>'required',
             ]);
 

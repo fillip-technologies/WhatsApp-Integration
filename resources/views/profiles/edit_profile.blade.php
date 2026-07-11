@@ -1,6 +1,14 @@
 @extends('admin.include.app')
 
 @section('content')
+@php
+    $updateRoute = null;
+    if(AdminLogin()){
+    $updateRoute = route('admin.profile.update',$user->id);
+    }elseif (UserLogin()) {
+      $updateRoute = route('user.update',$user->id);
+    }
+@endphp
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Breadcrumb -->
         <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-6">
@@ -42,7 +50,7 @@
                 </a>
             </div>
 
-            <form action="{{ route('user.update',$user->id) }}" method="POST" class="p-6 md:p-8">
+            <form action="{{ $updateRoute }}" method="POST" class="p-6 md:p-8">
                 @csrf
                 @method('PUT')
 

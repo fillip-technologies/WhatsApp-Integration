@@ -235,6 +235,7 @@ public function userpayment(){
                 'last_name'=>'required',
                 'email'=>'required|email|exists:users,email',
                 'company_name'=>'required',
+                'phone'=>'required|integer',
                 'business_type'=>'required',
             ]);
 
@@ -243,6 +244,7 @@ public function userpayment(){
                'first_name'=>$request->first_name,
                 'last_name'=>$request->last_name,
                 'email'=>$request->email,
+                'phone'=>$request->phone,
                 'company_name'=>$request->company_name,
                 'business_type'=>$request->business_type,
             ]);

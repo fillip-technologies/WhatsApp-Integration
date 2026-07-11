@@ -175,4 +175,32 @@ public function invoicedata($id)
              }
             return view('profiles.profile',compact('user'));
         }
+
+        public function AdminProfileEdit($id){
+            $user = User::findOrFail($id);
+            return view('profiles.edit_profile',compact('user'));
+        }
+
+         public function AdminUpdate(Request $request,$id){
+            $request->validate([
+                'first_name'=>'required',
+                'last_name'=>'required',
+                'email'=>'required|email|exists:users,email',
+                'company_name'=>'required',
+                'phone'=>'required|integer',
+                'business_type'=>'required',
+            ]);
+
+            $editdata = User::findOrFail($id);
+            $editdata->update([
+               'first_name'=>$request->first_name,
+                'last_name'=>$request->last_name,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
+                'company_name'=>$request->company_name,
+                'business_type'=>$request->business_type,
+            ]);
+
+            return back()->with('success','Profile Updated SuccessFully'." ". $editdata->first_name ." ". $editdata->last_name);
+        }
 }

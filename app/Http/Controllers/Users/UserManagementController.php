@@ -67,7 +67,9 @@ class UserManagementController extends Controller
         'amount'   => $plan->price * 100,
         'currency' => 'INR'
     ]);
+
      Mail::to($user->email)->send(new RegistrationEmail($user));
+
      return response()->json([
         'success' => true,
         'user_id' => $user->id,
@@ -79,6 +81,7 @@ class UserManagementController extends Controller
         'currency' => 'INR',
         'razorpay_key' => env('RAZORPAY_KEY')
     ]);
+
 }
         public function systemLogin(Request $request)
      {
@@ -88,14 +91,14 @@ class UserManagementController extends Controller
             ]);
     if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
         $user = Auth::user();
-        if($user->role == 'user'){
-         $check = Payment::with(['user'])->where('user_id',$user->id)->first();
-         if($check->status == "success"){
-         return redirect()->route('user.dashboard');
-         }else{
-              return back()->with('error','First you will be payment your plan then you can login here');
-         }
-        }
+            if($user->role == 'user'){
+            $check = Payment::with(['user'])->where('user_id',$user->id)->first();
+                if($check->status == "success"){
+                   return redirect()->route('user.dashboard');
+                }else{
+                    return back()->with('error','First you will be payment your plan then you can login here');
+                }
+            }
 
     }else{
             return back()->with('error','Invalid email or password.');
@@ -104,7 +107,6 @@ class UserManagementController extends Controller
     if (Auth::attempt(['email' => $request->email,'password' => $request->password])) {
         $user = Auth::user();
         if($user->role == 'admin'){
-
          return redirect('admin/dashboard');
         }
 
@@ -255,8 +257,21 @@ public function userpayment(){
 
         public function forgetPassword($id){
          $user = User::findOrFail($id);
-         $link = url('user/forget/password');
+         $link = url('user/ui/forgetpassword');
          ForgrtPasswordEvent::dispatch($user,$link);
          return back()->with('success','Check you Email Inbox');
+        }
+
+        public function showForgetui(){
+            return view('admin.settings.forgetpassword');
+
+        }
+
+        public function forgetPassUser(Request $request){
+            $request->validate([
+                'email'=>'required|email|exists:users,email',
+                'password'=>'required|confirmed'
+            ]);
+
         }
 }

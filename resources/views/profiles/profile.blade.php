@@ -57,14 +57,7 @@
                                 </svg>
                                 Print
                             </button>
-                            <a href=""
-                                class="px-4 py-2 bg-white text-gray-700 hover:bg-gray-50 text-sm font-medium rounded-lg transition duration-150 shadow-sm flex items-center">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                                </svg>
-                                Edit Profile
-                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -269,7 +262,7 @@
                             }
                         @endphp
                         <!-- Action Buttons -->
-                        <div class="pt-6 border-t border-gray-200 flex flex-wrap gap-3">
+                        <div class="pt-6 border-t border-gray-200 flex flex-wrap gap-3 float-end">
                             <a href="{{ $editRoute }}"
                                 class="inline-flex items-center px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition duration-150 shadow-sm hover:shadow-md">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,14 +281,14 @@
                                 Reset Password
                             </button>
 
-                            <button onclick="showDeactivateModal()"
+                            {{-- <button onclick="showDeactivateModal()"
                                 class="inline-flex items-center px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition duration-150 shadow-sm hover:shadow-md">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                                 </svg>
-                                {{ $user->is_active == 'active' ? 'Deactivate User' : 'Activate User' }}
-                            </button>
+                                {{ $user->status == 'active' ? 'Deactivate User' : 'Activate User' }}
+                            </button> --}}
                         </div>
                     </div>
                 </div>

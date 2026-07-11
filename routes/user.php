@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Users\UserManagementController;
 use App\Http\Controllers\Users\WhatsappApiController;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::prefix('user')->middleware(['user'])->controller(UserManagementController::class)->group(function(){
@@ -20,9 +22,9 @@ Route::post('forgetPassUser','forgetPassUser')->name('forgetPassUser');
 Route::controller(WhatsappApiController::class)->group(function(){
 Route::get('/create/template','createTemplate')->name('createTemplate');
 Route::post('/message/tempalate/create','MessageTemplate')->name('template.create');
+Route::delete('/message/tempalate/delete/{id}','deleteTemplate')->name('template.delete');
 
 });
-
 
 
 

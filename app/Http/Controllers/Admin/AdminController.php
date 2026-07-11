@@ -7,12 +7,14 @@ use App\Exports\PaymentDataExport;
 use App\Http\Controllers\Controller;
 use App\Models\ConfigData;
 use App\Models\Payment;
+use App\Models\Templates;
 use App\Models\User;
 use App\Models\WhatsappAccount;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Browsershot\Browsershot;
 
@@ -203,4 +205,33 @@ public function invoicedata($id)
 
             return back()->with('success','Profile Updated SuccessFully'." ". $editdata->first_name ." ". $editdata->last_name);
         }
+
+
+
+        public function deleteTemplate($id){
+        $temp = Templates::findOrFail($id);
+        $access_token = null;
+       $business_id  = null;
+        if(Auth::check()){
+        $user = Auth::user();
+        if($user->role == 'admin'){
+            $access_token = env('WHATSAPP_TOKEN');
+            $business_id  = env('WHATSAPP_BUSINESS_ACCOUNT_ID');
+        }
+        elseif($user->role == 'user'){
+            $config = getUserConfig();
+            $access_token = $config->access_token;
+            $business_id  = $config->business_id;
+        }
+
+     }
+       Http::withToken($access_token)
+        ->delete(
+            "https://graph.facebook.com/v25.0/".$business_id."/message_templates",
+            [
+                'name' => $temp->name
+            ]
+        );
+     return back()->with('success','Deleted Template SuccessFul');
+    }
 }

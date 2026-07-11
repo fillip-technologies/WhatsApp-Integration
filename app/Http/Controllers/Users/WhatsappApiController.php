@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Templates;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class WhatsappApiController extends Controller
@@ -29,21 +30,6 @@ class WhatsappApiController extends Controller
         'header_text'      => 'nullable|string',
         'footer'           => 'nullable|string',
     ]);
-
-    $template = Templates::create([
-        'user_id'          => $request->user_id,
-        'name'             => $request->name,
-        'category'         => $request->category,
-        'language'         => $request->language,
-        'body'             => $request->body,
-        'status'           => $request->status ?? 'Draft',
-        'meta_template_id' => $request->meta_template_id,
-        'button_type'      => $request->button_type,
-        'header_type'      => $request->header_type,
-        'header_text'      => $request->header_text,
-        'footer'           => $request->footer,
-    ]);
-
 
     $components = [];
 
@@ -91,38 +77,82 @@ class WhatsappApiController extends Controller
         ];
     }
 }
-       $response = Http::withToken(env('WHATSAPP_TOKEN'))
+
+     $access_token = null;
+     $business_id  = null;
+     $user_id = null;
+        if(Auth::check()){
+        $user = Auth::user();
+        if($user->role == 'user'){
+            $config = getUserConfig();
+            $access_token = $config->access_token;
+            $business_id  = $config->business_id;
+            $user_id = $user->id;
+        }
+
+    }
+
+    if(!$access_token || !$business_id){
+
+        return response()->json([
+            'success'=>false,
+            'message'=>'WhatsApp configuration missing'
+        ],422);
+
+    }
+
+      $template = Templates::create([
+        'user_id'          => $request->user_id,
+        'name'             => $request->name,
+        'category'         => $request->category,
+        'language'         => $request->language,
+        'body'             => $request->body,
+        'status'           => $request->status ?? 'Draft',
+        'meta_template_id' => $request->meta_template_id,
+        'button_type'      => $request->button_type,
+        'header_type'      => $request->header_type,
+        'header_text'      => $request->header_text,
+        'footer'           => $request->footer,
+    ]);
+
+
+       $metaResponse = Http::withToken($access_token)
         ->post(
-            "https://graph.facebook.com/v25.0/".env('WHATSAPP_BUSINESS_ACCOUNT_ID')."/message_templates",
+            "https://graph.facebook.com/v25.0/".$business_id."/message_templates",
             [
-                'name'       => strtolower(str_replace(' ', '_', $request->name)),
-                'category'   => strtoupper($request->category),
-                'language'   => $request->language,
+
+                'name' => strtolower(
+                    str_replace(' ','_',$request->name)
+                ),
+
+                'category' => strtoupper($request->category),
+
+                'language' => $request->language,
+
                 'components' => $components,
+
             ]
         );
 
-       if (!$response->successful()) {
+    if(!$metaResponse->successful()){
+        $template->update([
+            'status'=>'Rejected',
+            'user_id'=>$user_id
+        ]);
         return response()->json([
-            'success' => false,
-            'message' => 'Meta template creation failed',
-            'errors'  => $response->json(),
-        ], 422);
-      }
+            'success'=>false,
+            'message'=>'Meta template creation failed',
+            'errors'=>$metaResponse->json()
+        ],422);
 
-    $template->update([
-        'meta_template_id' => $response->json()['id'] ?? null,
-        'status'           => 'Pending',
-    ]);
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Template created successfully',
-        'data' => [
-            'template' => $template,
-            'meta'     => $response->json(),
-        ]
-    ]);
+    }
+     $metaData = $metaResponse->json();
+     $template->update([
+        'meta_template_id'=>$metaData['id'] ?? null,
+        'user_id'=>$user_id,
+        'status'=>$metaData['status'] ?? 'Pending',
+     ]);
+    return back()->with('success','Template created successfully');
 }
 
 
@@ -137,31 +167,34 @@ public function showTemplate($id)
 
 public function deleteTemplate($id)
 {
+
+    $access_token = null;
+     $business_id  = null;
+
+        if(Auth::check()){
+        $user = Auth::user();
+        if($user->role == 'user'){
+            $config = getUserConfig();
+            $access_token = $config->access_token;
+            $business_id  = $config->business_id;
+        }
+
+    }
     $template = Templates::findOrFail($id);
-    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+    $response = Http::withToken($access_token)
         ->delete(
-            'https://graph.facebook.com/v25.0/' .
-            env('WHATSAPP_PHONE_NUMBER_ID') .
-            '/message_templates',
+            'https://graph.facebook.com/v25.0/'.$business_id.'/message_templates',
             [
                 'name' => $template->name
             ]
         );
 
-    if (!$response->successful()) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Failed to delete template from Meta',
-            'error' => $response->json()
-        ], 422);
-    }
+       if (!$response->successful()) {
+       return back()->with('error','Failed to delete template from Meta');
+       }
+      $template->delete();
+      return back()->with('success','Template deleted successfully');
 
-    $template->delete();
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Template deleted successfully'
-    ]);
 }
 
  public function metaTemplateList()

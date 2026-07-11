@@ -54,9 +54,10 @@ Route::get('check-templates', function () {
     dd($response->status(), $response->json());
 });
 
+//get single template
 Route::get('/single/tempalte',function(){
 $response = Http::withToken(env('WHATSAPP_TOKEN'))
-    ->get("https://graph.facebook.com/v25.0/27272381595762988");
+    ->get("https://graph.facebook.com/v25.0/1343180371257012");
 dd($response->json());
 });
 
@@ -123,4 +124,20 @@ Route::get('send-hello', function () {
         );
 
     dd($response->status(), $response->json());
+});
+
+Route::get('delete-template', function () {
+    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+        ->delete(
+            "https://graph.facebook.com/v25.0/" .
+            env('WHATSAPP_BUSINESS_ACCOUNT_ID') . "/message_templates",
+            [
+                'name' => 'testing_tamp'
+            ]
+        );
+
+    return response()->json([
+        'status' => $response->status(),
+        'data' => $response->json()
+    ]);
 });

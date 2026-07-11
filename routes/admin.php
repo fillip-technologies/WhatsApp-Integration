@@ -48,4 +48,6 @@ Route::post('/plan/update/{id}','updatePlan')->name('update.plan');
 
 });
 
+
+
 });

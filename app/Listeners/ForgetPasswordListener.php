@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Listeners;
-
 use App\Events\ForgrtPasswordEvent;
 use App\Mail\ForgetPasswordMail;
 use Illuminate\Contracts\Queue\ShouldQueue;

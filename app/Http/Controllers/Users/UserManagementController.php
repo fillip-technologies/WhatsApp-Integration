@@ -267,11 +267,18 @@ public function userpayment(){
 
         }
 
-        public function forgetPassUser(Request $request){
-            $request->validate([
-                'email'=>'required|email|exists:users,email',
-                'password'=>'required|confirmed'
-            ]);
-
-        }
+        public function forgetPassUser(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email|exists:users,email',
+        'password' => 'required|confirmed',
+    ]);
+        User::where('email', trim($request->email))
+        ->update([
+            'password' => Hash::make($request->password),
+        ]);
+      return redirect()
+        ->route('login')
+        ->with('success', 'Password reset successfully.');
+}
 }

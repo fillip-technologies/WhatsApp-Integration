@@ -84,8 +84,8 @@
             </svg>
           </div>
         </div>
-        <h2 class="mt-5 text-3xl font-bold tracking-tight text-slate-800">Welcome back</h2>
-        <p class="mt-1 text-sm text-slate-500">Sign in to your dashboard</p>
+        <h2 class="mt-5 text-3xl font-bold tracking-tight text-slate-800">Forget Password</h2>
+
       </div>
 
 
@@ -101,11 +101,10 @@
 
 
       <!-- form -->
-      <form class="mt-7 space-y-6" method="POST" action="">
+      <form class="mt-7 space-y-6" method="POST" action="{{ route('forgetPassUser') }}">
         @csrf
 
         <div class="space-y-5">
-          <!-- email -->
           <div>
             <label for="email" class="block text-sm font-medium text-slate-700 mb-1.5">Email Address</label>
             <div class="relative input-group">
@@ -128,7 +127,6 @@
           <div>
             <div class="flex justify-between items-center mb-1.5">
               <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
-              <a href="#" class="text-xs font-medium text-slate-500 hover:text-slate-800 transition">Forgot?</a>
             </div>
             <div class="relative input-group">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -147,7 +145,6 @@
           <div>
             <div class="flex justify-between items-center mb-1.5">
               <label for="password" class="block text-sm font-medium text-slate-700">Confirm Password</label>
-              <a href="#" class="text-xs font-medium text-slate-500 hover:text-slate-800 transition">Forgot?</a>
             </div>
             <div class="relative input-group">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -158,7 +155,7 @@
               <input type="password" id="password" name="password_confirmation" placeholder="••••••••"
                 class="w-full pl-10 pr-4 py-3.5 border border-slate-200 rounded-2xl bg-white/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-transparent transition-all duration-200 @error('password') border-rose-400 ring-2 ring-rose-200 @enderror" />
             </div>
-            @error('password')
+            @error('password_confirmation')
               <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
             @enderror
           </div>

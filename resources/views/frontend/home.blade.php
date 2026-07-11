@@ -223,12 +223,9 @@
                                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-green-100 focus:border-green-500 focus:bg-white transition-all duration-300">
 
                                         <option value="">Select Business Type</option>
-                                        <option>E-commerce</option>
-                                        <option>Education</option>
-                                        <option>Healthcare</option>
-                                        <option>Real Estate</option>
-                                        <option>Marketing Agency</option>
-                                        <option>Other</option>
+                                        @foreach (BusinessType() as $item)
+                                            <option value="{{ $item }}">{{ $item }}</option>
+                                        @endforeach
 
                                     </select>
 
@@ -387,7 +384,7 @@
                 cancel anytime</p>
         </div>
     </section>
-    
+
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         const modal = document.getElementById('signupModal');

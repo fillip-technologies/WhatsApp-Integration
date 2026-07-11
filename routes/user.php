@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->middleware(['user'])->controller(UserManagementController::class)->group(function(){
 Route::get('/dashboard','user_dashboard')->name('user.dashboard');
+Route::get('user/edit/{id}','UserEdit')->name('user.edit');
+Route::put('profile/update/{id}','UserUpdate')->name('user.update');
+Route::get('user/profile','UserProfile')->name('user.profile');
 Route::post('/logout','UserLogout')->name('user.logout');
 Route::get('/list/Template','listTemplate')->name('listTemplate');
 Route::get('/list/userpayment','userpayment')->name('userpayment');

@@ -21,7 +21,7 @@ Route::get('/invoice/generate/{id}','invoicedata')->name('invoicedata');
 Route::get('/serach/user','SearchUser')->name('search.users');
 Route::get('/whatsappsetup/view','whatsappsetupView')->name('whatsappsetupView');
 Route::post('/storewhatsappsetup','storewhatsappsetupView')->name('storewhatsappsetup');
-
+Route::get('profile','adminprofile')->name('admin.profile');
 // Template Management
 
 Route::controller(TemplateController::class)->group(function(){

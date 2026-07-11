@@ -120,7 +120,7 @@
                         <p class="text-purple-300 text-xs font-semibold uppercase tracking-wider">Account</p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('admin.profile') }}"
                         class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                         <div
                             class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
@@ -206,7 +206,7 @@
                         <p class="text-purple-300 text-xs font-semibold uppercase tracking-wider">Account</p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('user.profile') }}"
                         class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                         <div
                             class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
@@ -353,7 +353,7 @@
                         <p class="text-purple-300 text-xs font-semibold uppercase tracking-wider">Account</p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('admin.profile') }}"
                         class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                         <div
                             class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
@@ -439,7 +439,7 @@
                         <p class="text-purple-300 text-xs font-semibold uppercase tracking-wider">Account</p>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('user.profile') }}"
                         class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                         <div
                             class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">

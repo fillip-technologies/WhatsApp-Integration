@@ -17,3 +17,17 @@ if(!function_exists('getUser')){
 }
 
 }
+
+if(!function_exists(' BusinessType')){
+    function  BusinessType(){
+        return
+        [
+            "E-commerce",
+            "Education",
+            "Healthcare",
+            "Real Estate",
+            "Marketing Agency",
+            "Other"
+        ];
+    }
+}

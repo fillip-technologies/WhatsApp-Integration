@@ -211,4 +211,42 @@ public function userpayment(){
         }
     }
 }
+
+        public function UserProfile(){
+        $user = [];
+        if(Auth::check()){
+        $users = Auth::user();
+            if($users->role == 'user'){
+            $user = $users;
+            }
+        }
+            return view('profiles.profile',compact('user'));
+        }
+
+        public function UserEdit($id){
+            $user = User::findOrFail($id);
+            return view('profiles.edit_profile',compact('user'));
+        }
+
+
+        public function UserUpdate(Request $request,$id){
+            $request->validate([
+                'first_name'=>'required',
+                'last_name'=>'required',
+                'email'=>'required|email|exists:users,email',
+                'company_name'=>'required',
+                'business_type'=>'required',
+            ]);
+
+            $editdata = User::findOrFail($id);
+            $editdata->update([
+               'first_name'=>$request->first_name,
+                'last_name'=>$request->last_name,
+                'email'=>$request->email,
+                'company_name'=>$request->company_name,
+                'business_type'=>$request->business_type,
+            ]);
+
+            return back()->with('success','Profile Updated SuccessFully'." ". $editdata->first_name ." ". $editdata->last_name);
+        }
 }

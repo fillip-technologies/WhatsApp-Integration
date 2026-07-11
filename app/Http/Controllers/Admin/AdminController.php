@@ -146,7 +146,7 @@ public function invoicedata($id)
         return view('admin.settings.whatsappsetupt');
     }
     public function storewhatsappsetupView(Request $request){
-        
+
         $request->validate([
             'user_id'=>'required',
             'phone_number'=>'required|integer',
@@ -163,5 +163,16 @@ public function invoicedata($id)
 
         public function exportPaymentdata(){
             return Excel::download(new PaymentDataExport,'paymentslist.xlsx');
+        }
+
+        public function adminprofile(){
+             $user= [];
+             if(Auth::check()){
+                $users = Auth::user();
+                  if($users->role == 'admin'){
+                    $user = $users;
+                    }
+             }
+            return view('profiles.profile',compact('user'));
         }
 }

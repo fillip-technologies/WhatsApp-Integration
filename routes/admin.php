@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->controller(AdminController::class)->middleware(['admin'])->group(function(){
 Route::get('/exportPaymentdata','exportPaymentdata')->name('exportPaymentdata');
+Route::get('profile/edit/{id}','AdminProfileEdit')->name('admin.edit');
 Route::get('/dashboard','adminDashboard')->name('admin.dashboard');
 Route::post('/logout','LogoutAdmin')->name('admin.logout');
 Route::get('/config/index','ConfigIndex')->name('config.index');

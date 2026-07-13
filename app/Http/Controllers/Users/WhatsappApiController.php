@@ -168,7 +168,7 @@ public function showTemplate($id)
 public function deleteTemplate($id)
 {
 
-    $access_token = null;
+     $access_token = null;
      $business_id  = null;
 
         if(Auth::check()){
@@ -199,11 +199,21 @@ public function deleteTemplate($id)
 
  public function metaTemplateList()
 {
-    $response = Http::withToken(env('WHATSAPP_TOKEN'))
+
+        $access_token = null;
+        $business_id  = null;
+        if(Auth::check()){
+        $user = Auth::user();
+        if($user->role == 'user'){
+            $config = getUserConfig();
+            $access_token = $config->access_token;
+            $business_id  = $config->business_id;
+        }
+    }
+
+    $response = Http::withToken($access_token)
         ->get(
-            'https://graph.facebook.com/v25.0/' .
-            env('WHATSAPP_PHONE_NUMBER_ID') .
-            '/message_templates'
+            'https://graph.facebook.com/v25.0/'.$business_id.'/message_templates'
         );
 
     return response()->json([
@@ -211,4 +221,6 @@ public function deleteTemplate($id)
         'data' => $response->json()['data'] ?? []
     ]);
 }
+
+
 }

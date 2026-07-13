@@ -61,6 +61,17 @@
                     {{-- <span class="ml-auto bg-green-500/20 text-green-300 text-xs px-2 py-0.5 rounded-full">Active</span> --}}
                 </a>
 
+                <a href="{{ route('subscriptionList') }}"
+                    class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+                    <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
+                        <svg class="h-5 w-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 8h14l-1 11H6L5 8zm4-2a3 3 0 016 0v2H9V6z" />
+                        </svg>
+                    </div>
+                    Purchased Plans
+                </a>
+
                 <a href="{{ route('user.list') }}"
                     class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
                     <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
@@ -292,6 +303,24 @@
                     </div>
                     Subscription Plans
                     {{-- <span class="ml-auto bg-green-500/20 text-green-300 text-xs px-2 py-0.5 rounded-full">Active</span> --}}
+                </a>
+
+                <a href="{{ route('subscriptionList') }}"
+                    class="text-purple-100 hover:bg-white/10 group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200">
+
+                    <div class="p-1.5 bg-purple-500/20 rounded-lg mr-3 group-hover:bg-purple-500/30 transition-colors">
+                        <svg class="h-5 w-5 text-purple-300" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 8h14l-1 11H6L5 8zm4-2a3 3 0 016 0v2H9V6z" />
+                        </svg>
+                    </div>
+
+                    Purchased Plans
+
+                    {{-- <span class="ml-auto bg-green-500/20 text-green-300 text-xs px-2 py-0.5 rounded-full">
+        Active
+    </span> --}}
                 </a>
 
                 <a href="{{ route('user.list') }}"

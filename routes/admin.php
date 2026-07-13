@@ -45,6 +45,7 @@ Route::get('/plan/edit/{id}','EditPlan')->name('edit.plan');
 Route::post('/store/plan','storePlan')->name('store.plan');
 Route::delete('/delete/plan','deletePlan')->name('delete.plan');
 Route::post('/plan/update/{id}','updatePlan')->name('update.plan');
+Route::get('/purchesed/plans/list','subscriptionList')->name('subscriptionList');
 
 });
 

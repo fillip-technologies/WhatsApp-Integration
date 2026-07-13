@@ -24,6 +24,7 @@ class PlanManageController extends Controller
         'name'          => 'required|string|max:255',
         'price'         => 'required|numeric|min:0',
         'description'   => 'required|string',
+        'plan_type'     =>'nullable',
         'plans'         => 'required|string',
         'message_limit' => 'required|integer|min:0',
         'validity_day'  => 'required|integer|min:1',
@@ -37,7 +38,8 @@ class PlanManageController extends Controller
         'price'         => $validated['price'],
         'description'   => $validated['description'],
         'plans'         => $validated['plans'],
-        'button'=>$validated['button'],
+        'plan_type'     =>$validated['plan_type'],
+        'button'        =>$validated['button'],
         'message_limit' => $validated['message_limit'],
         'validity_day'  => $validated['validity_day'],
         'feature'       => $validated['feature'],
@@ -60,6 +62,7 @@ class PlanManageController extends Controller
         'name'          => 'required|string|max:255',
         'price'         => 'required|numeric|min:0',
         'description'   => 'required|string',
+        'plan_type'=>'nullable',
         'plans'         => 'required|string',
          'button'=>'required|string',
         'message_limit' => 'required|integer|min:0',
@@ -73,6 +76,7 @@ class PlanManageController extends Controller
     $plan->update([
         'name'          => $validated['name'],
         'price'         => $validated['price'],
+        'plan_type'=>$validated['plan_type'],
         'description'   => $validated['description'],
         'plans'         => $validated['plans'],
         'button'=>$validated['button'],
@@ -105,4 +109,23 @@ class PlanManageController extends Controller
         return view('admin.payments.payment',compact('datas','totalRevanu','planeActive','failpayment','pendingpay'));
 
     }
+
+
+
+   public function subscriptionList(Request $request)
+  {
+    $plans = Subscription::with(['user', 'plan']);
+    if ($request->filled('status')) {
+        $plans->where('status', $request->status);
+    }
+
+    if ($request->filled('plans')) {
+          $plans->whereHas('plan', function ($query) use ($request) {
+            $query->where('plans', 'like', '%' . $request->plans . '%');
+        });
+    }
+
+    $plans = $plans->paginate(9)->withQueryString();
+    return view('admin.plans.purchesplan', compact('plans'));
+  }
 }

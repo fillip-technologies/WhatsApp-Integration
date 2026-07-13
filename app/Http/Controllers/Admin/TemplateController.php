@@ -105,12 +105,7 @@ class TemplateController extends Controller
             $business_id  = env('WHATSAPP_BUSINESS_ACCOUNT_ID');
             $user_id = $user->id;
         }
-        elseif($user->role == 'user'){
-            $config = getUserConfig();
-            $access_token = $config->access_token;
-            $business_id  = $config->business_id;
-           $user_id = $user->id;
-        }
+
 
     }
 
@@ -217,6 +212,7 @@ class TemplateController extends Controller
                 'name' => $temp->name
             ]
         );
+     $temp->delete();
      return back()->with('success','Deleted Template SuccessFul');
     }
 }

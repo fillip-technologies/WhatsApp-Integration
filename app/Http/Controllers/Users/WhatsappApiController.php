@@ -146,6 +146,7 @@ class WhatsappApiController extends Controller
         ],422);
 
     }
+    
      $metaData = $metaResponse->json();
      $template->update([
         'meta_template_id'=>$metaData['id'] ?? null,
